@@ -24,7 +24,8 @@ class PointsBox extends StatelessWidget {
                 children: [
                   Text(
                     "400 ",
-                    style: TextStyle(fontFamily: "SavedByZero", fontSize: 24),
+                    style: TextStyle(
+                        fontFamily: kFontFamilySecondary, fontSize: 24),
                   ),
                   Text(
                     "نقطة",
@@ -47,7 +48,8 @@ class PointsBox extends StatelessWidget {
                 children: [
                   Text(
                     "355 ",
-                    style: TextStyle(fontFamily: "SavedByZero", fontSize: 24),
+                    style: TextStyle(
+                        fontFamily: kFontFamilySecondary, fontSize: 24),
                   ),
                   Text(
                     "نقطة",

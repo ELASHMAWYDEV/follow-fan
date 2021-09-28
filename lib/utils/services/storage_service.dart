@@ -37,7 +37,7 @@ class StorageService extends GetxService {
   //Active Locale
   Locale get activeLocale {
     return Locale(_prefs.getString(StorageKeys.activeLocale) ??
-        SupportedLocales.english.toString());
+        SupportedLocales.arabic.toString());
   }
 
   set activeLocale(Locale activeLocal) {

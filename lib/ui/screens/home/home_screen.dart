@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:follow_fan/ui/components/header.dart';
+import 'package:follow_fan/ui/components/main_layout.dart';
 import 'package:follow_fan/ui/screens/home/components/mini_box.dart';
 import 'package:follow_fan/ui/screens/home/components/points_box.dart';
 import 'package:follow_fan/utils/constants.dart';
@@ -21,56 +22,49 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
-              child: Column(
-                children: [
-                  Header(),
-                  PointsBox(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MiniBox(title: "الروابط الفعالة", number: 3),
-                      MiniBox(title: "الروابط قيد الانتظار", number: 5),
-                    ],
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 35),
-                    child: Divider(
-                      thickness: 2,
-                      color: kPrimaryColor,
-                    ),
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        width: size.width * 0.4,
-                        child: SvgPicture.asset("assets/images/gift.svg",
-                            fit: BoxFit.contain),
-                      )
-                    ],
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        AlertPromptBox.showPrompt(
-                            message: "هل انت متأكد",
-                            onSuccess: () {
-                              print("Confirmed");
-                            },
-                            onDismiss: () {
-                              print("dismissed");
-                            });
-                      },
-                      child: Text("Show"))
-                ],
-              )),
-        ),
+    return MainLayout(
+      body: Column(
+        children: [
+          PointsBox(),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MiniBox(title: "الروابط الفعالة", number: 3),
+              MiniBox(title: "الروابط قيد الانتظار", number: 5),
+            ],
+          ),
+          Divider(
+            thickness: 2,
+            height: 40,
+            indent: 30,
+            endIndent: 30,
+            color: kPrimaryColor,
+          ),
+          Container(
+            height: 100,
+            child:
+                SvgPicture.asset("assets/images/gift.svg", fit: BoxFit.contain),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          TextButton(
+              onPressed: () {},
+              style: ButtonStyle(
+                  padding: MaterialStateProperty.all(EdgeInsets.zero),
+                  backgroundColor: MaterialStateProperty.all(kOrangeColor),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4)))),
+              child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(4)),
+                  child: Text("اكسب المزيد من النقاط",
+                      style: TextStyle(color: kWhiteColor))))
+        ],
       ),
     );
   }
