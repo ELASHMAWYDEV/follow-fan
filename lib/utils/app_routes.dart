@@ -7,5 +7,6 @@ class AppRoutes {
   static List<GetPage> routes = [
     GetPage(name: "/splash", page: () => SplashScreen()),
     GetPage(name: "/home", page: () => HomeScreen()),
+    GetPage(name: "/contact-us", page: () => ContactUsScreen()),
   ];
 }

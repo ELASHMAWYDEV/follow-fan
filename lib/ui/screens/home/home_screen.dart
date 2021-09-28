@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:follow_fan/ui/components/alert_prompt_box.dart';
-import 'package:follow_fan/ui/components/header.dart';
 import 'package:follow_fan/ui/components/main_layout.dart';
 import 'package:follow_fan/ui/screens/home/components/mini_box.dart';
 import 'package:follow_fan/ui/screens/home/components/points_box.dart';
