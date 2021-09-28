@@ -54,7 +54,9 @@ class AppDrawer extends StatelessWidget {
                   title: "المعاملات"),
               MenuButton(
                   image: "assets/images/question.svg",
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed("/contact-us");
+                  },
                   title: "تواصل معنا"),
               MenuButton(
                   image: "assets/images/information.svg",
