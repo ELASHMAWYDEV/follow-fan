@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:follow_fan/utils/constants.dart';
+import 'package:follow_fan/utils/services/navigation_service.dart';
+import 'package:get/get.dart';
 
 class Header extends StatefulWidget {
   const Header({Key? key}) : super(key: key);
@@ -12,8 +14,8 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).padding.top + 20),
+      padding:
+          EdgeInsets.symmetric(vertical: MediaQuery.of(context).padding.top),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -34,7 +36,9 @@ class MenuTap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Get.find<NavigationService>().scaffoldKey.currentState!.openDrawer();
+      },
       borderRadius: BorderRadius.circular(50),
       highlightColor: kPrimaryColor,
       child: Container(
