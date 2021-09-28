@@ -13,18 +13,30 @@ class Header extends StatefulWidget {
 class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding:
-          EdgeInsets.symmetric(vertical: MediaQuery.of(context).padding.top),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          MenuTap(),
-          Image.asset(
-            "assets/images/logo.png",
-            width: 120,
-          ),
-        ],
+    return Positioned(
+      top: 0,
+      left: 0,
+      child: Container(
+        width: size.width,
+        padding: EdgeInsets.fromLTRB(
+            20, MediaQuery.of(context).padding.top + 5, 20, 10),
+        decoration: BoxDecoration(color: kPrimaryColor, boxShadow: <BoxShadow>[
+          BoxShadow(
+              blurRadius: 10,
+              offset: Offset(0, 3),
+              color: kPrimaryDarkColor.withOpacity(0.5))
+        ]),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            MenuTap(),
+            Image.asset(
+              "assets/images/logo.png",
+              width: 120,
+            ),
+          ],
+        ),
       ),
     );
   }

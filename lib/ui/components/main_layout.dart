@@ -18,17 +18,28 @@ class MainLayout extends StatelessWidget {
       key: Get.find<NavigationService>().scaffoldKey,
       backgroundColor: kPrimaryDarkColor,
       drawer: AppDrawer(),
-      bottomNavigationBar: BottomNavigation(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-          child: Column(
-            children: [
-              Header(),
-              body,
-            ],
+      body: ConstrainedBox(
+        constraints: BoxConstraints(minHeight: size.height),
+        child: Stack(children: [
+          SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 90,
+                  ),
+                  body,
+                  SizedBox(
+                    height: 80,
+                  )
+                ],
+              ),
+            ),
           ),
-        ),
+          Header(),
+          BottomNavigation()
+        ]),
       ),
     );
   }
