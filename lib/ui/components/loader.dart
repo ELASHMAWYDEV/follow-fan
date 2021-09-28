@@ -7,7 +7,7 @@ class Loader {
     return Get.dialog(
         Center(
             child: CircularProgressIndicator(
-          color: kPrimary,
+          color: kPrimaryColor,
         )),
         barrierDismissible: false);
   }

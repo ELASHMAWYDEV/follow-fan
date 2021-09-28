@@ -9,7 +9,7 @@ class PointsBox extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
       decoration: BoxDecoration(
-          color: kPrimary, borderRadius: BorderRadius.circular(4)),
+          color: kPrimaryColor, borderRadius: BorderRadius.circular(4)),
       child: Column(
         children: [
           Row(
@@ -66,10 +66,10 @@ class PointsBox extends StatelessWidget {
                 decoration: BoxDecoration(),
                 child: Row(
                   children: [
-                    Text("اضافة نقاط", style: TextStyle(color: kWhite)),
+                    Text("اضافة نقاط", style: TextStyle(color: kWhiteColor)),
                     Icon(
                       Icons.add,
-                      color: kWhite,
+                      color: kWhiteColor,
                     )
                   ],
                 ),

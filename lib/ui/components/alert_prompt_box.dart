@@ -39,7 +39,7 @@ class AlertPromptBox {
         StatefulBuilder(
           builder: (BuildContext context, Function setState) => boxContainer(
             title: message,
-            color: kPrimary,
+            color: kPrimaryColor,
             iconPath: iconPath,
             context: context,
             // actions: [
@@ -58,8 +58,8 @@ class AlertPromptBox {
             //         () {
             //           Get.back();
             //         },
-            //     textColor: kPrimary,
-            //     backgroundColor: kWhite,
+            //     textColor: kPrimaryColor,
+            //     backgroundColor: kWhiteColor,
             //     hasBorder: true,
             //   )
             // ]
@@ -77,7 +77,7 @@ Widget boxContainer(
         var context,
         required Color color}) =>
     Dialog(
-      backgroundColor: kPrimaryDark,
+      backgroundColor: kPrimaryDarkColor,
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: FittedBox(
@@ -88,7 +88,8 @@ Widget boxContainer(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: <BoxShadow>[
-                  BoxShadow(blurRadius: 2, color: kPrimaryDark.withOpacity(0.5))
+                  BoxShadow(
+                      blurRadius: 2, color: kPrimaryDarkColor.withOpacity(0.5))
                 ]),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +102,7 @@ Widget boxContainer(
                       child: Text(
                         title ?? "تأكيد",
                         style: TextStyle(
-                            color: kPrimaryDark,
+                            color: kPrimaryDarkColor,
                             fontSize: 24,
                             fontWeight: FontWeight.w600),
                       ),
@@ -109,17 +110,19 @@ Widget boxContainer(
                     InkWell(
                         onTap: onDismiss ?? () => {Get.back()},
                         borderRadius: BorderRadius.circular(4),
-                        highlightColor: kWhite,
+                        highlightColor: kWhiteColor,
                         child: Container(
                           padding:
                               EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                           decoration: BoxDecoration(
-                              color: kRed,
-                              borderRadius: BorderRadius.circular(4)),
+                              color: kRedColor,
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(4),
+                                  bottomRight: Radius.circular(4))),
                           child: Center(
                             child: Icon(
                               Icons.close,
-                              color: kWhite,
+                              color: kWhiteColor,
                             ),
                           ),
                         ))
@@ -134,7 +137,7 @@ Widget boxContainer(
                     title ?? "هل أنت متأكد ؟",
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: kPrimaryDark,
+                      color: kPrimaryDarkColor,
                       fontSize: 16,
                     ),
                   ),
@@ -153,10 +156,11 @@ Widget boxContainer(
                         child: TextButton(
                           onPressed: () {},
                           style: TextButton.styleFrom(
-                              backgroundColor: kPrimaryLight,
+                              backgroundColor: kPrimaryLightColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4))),
-                          child: Text("تأكيد", style: TextStyle(color: kWhite)),
+                          child: Text("تأكيد",
+                              style: TextStyle(color: kWhiteColor)),
                         ),
                       ),
                       Container(
@@ -168,10 +172,11 @@ Widget boxContainer(
                             Get.back();
                           },
                           style: TextButton.styleFrom(
-                              backgroundColor: kRed,
+                              backgroundColor: kRedColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4))),
-                          child: Text("الغاء", style: TextStyle(color: kWhite)),
+                          child: Text("الغاء",
+                              style: TextStyle(color: kWhiteColor)),
                         ),
                       )
                     ],

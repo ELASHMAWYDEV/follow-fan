@@ -36,7 +36,7 @@ class MenuTap extends StatelessWidget {
     return InkWell(
       onTap: () {},
       borderRadius: BorderRadius.circular(50),
-      highlightColor: kPrimary,
+      highlightColor: kPrimaryColor,
       child: Container(
         padding: EdgeInsets.all(10),
         child: Column(
@@ -45,7 +45,7 @@ class MenuTap extends StatelessWidget {
               height: 3,
               width: 30,
               decoration: BoxDecoration(
-                  color: kWhite, borderRadius: BorderRadius.circular(10)),
+                  color: kWhiteColor, borderRadius: BorderRadius.circular(10)),
             ),
             SizedBox(
               height: 8,
@@ -54,7 +54,7 @@ class MenuTap extends StatelessWidget {
               height: 3,
               width: 40,
               decoration: BoxDecoration(
-                  color: kWhite, borderRadius: BorderRadius.circular(10)),
+                  color: kWhiteColor, borderRadius: BorderRadius.circular(10)),
             ),
             SizedBox(
               height: 8,
@@ -63,7 +63,7 @@ class MenuTap extends StatelessWidget {
               height: 3,
               width: 30,
               decoration: BoxDecoration(
-                  color: kWhite, borderRadius: BorderRadius.circular(10)),
+                  color: kWhiteColor, borderRadius: BorderRadius.circular(10)),
             ),
           ],
         ),
