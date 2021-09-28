@@ -10,7 +10,6 @@ class NavigationService extends GetxService {
   NavigationService();
 
   final GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   static NavigationService init() {
     return NavigationService();

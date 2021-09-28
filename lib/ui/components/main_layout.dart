@@ -18,10 +18,10 @@ class MainLayout extends StatelessWidget {
   final Widget body;
   final bool isBackEnabled;
   final String title;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: Get.find<NavigationService>().scaffoldKey,
       backgroundColor: kPrimaryDarkColor,
       drawer: AppDrawer(),
       body: ConstrainedBox(
