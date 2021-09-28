@@ -50,18 +50,21 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 20,
           ),
           TextButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                  padding: MaterialStateProperty.all(EdgeInsets.zero),
-                  backgroundColor: MaterialStateProperty.all(kOrangeColor),
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4)))),
-              child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(4)),
-                  child: Text("اكسب المزيد من النقاط",
-                      style: TextStyle(color: kWhiteColor))))
+            onPressed: () {},
+            style: ButtonStyle(
+                padding: MaterialStateProperty.all(EdgeInsets.zero),
+                backgroundColor: MaterialStateProperty.all(kOrangeColor),
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4)))),
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(4)),
+              child: Text(
+                "اكسب المزيد من النقاط",
+                style: TextStyle(color: kWhiteColor),
+              ),
+            ),
+          )
         ],
       ),
     );
