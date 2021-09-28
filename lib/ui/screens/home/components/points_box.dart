@@ -7,7 +7,7 @@ class PointsBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       decoration: BoxDecoration(
           color: kPrimaryColor, borderRadius: BorderRadius.circular(4)),
       child: Column(
@@ -58,22 +58,29 @@ class PointsBox extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: 20,
+            height: 10,
           ),
-          TextButton(
-              onPressed: () {},
-              child: Container(
-                decoration: BoxDecoration(),
+          Center(
+            child: FittedBox(
+              child: TextButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(kRedColor),
+                ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("اضافة نقاط", style: TextStyle(color: kWhiteColor)),
                     Icon(
                       Icons.add,
                       color: kWhiteColor,
+                      size: 20,
                     )
                   ],
                 ),
-              ))
+              ),
+            ),
+          )
         ],
       ),
     );
