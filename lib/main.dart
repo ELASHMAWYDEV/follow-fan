@@ -35,10 +35,10 @@ class MyApp extends StatelessWidget {
       getPages: AppRoutes.routes,
       initialRoute: AppRoutes.initialRoute,
       theme: ThemeData(
-          scaffoldBackgroundColor: kPrimaryDark,
-          primaryColor: kPrimary,
+          scaffoldBackgroundColor: kPrimaryDarkColor,
+          primaryColor: kPrimaryColor,
           textTheme: Theme.of(context).textTheme.apply(
-                bodyColor: kWhite,
+                bodyColor: kWhiteColor,
                 fontFamily: kFontFamily,
               ),
           visualDensity: VisualDensity.adaptivePlatformDensity),

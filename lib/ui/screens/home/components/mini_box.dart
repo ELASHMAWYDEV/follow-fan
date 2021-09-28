@@ -18,14 +18,14 @@ class MiniBox extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              color: kWhite,
+              color: kWhiteColor,
               fontSize: 18,
             ),
           ),
           Text(
             "$number",
             style: TextStyle(
-              color: kWhite,
+              color: kWhiteColor,
               fontSize: 14,
             ),
           ),
