@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constants.dart';
+import 'package:follow_fan/utils/constants.dart';
 
 class Header extends StatefulWidget {
   const Header({Key? key}) : super(key: key);

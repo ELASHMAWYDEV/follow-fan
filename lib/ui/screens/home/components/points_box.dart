@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:follow_fan/constants.dart';
+import 'package:follow_fan/utils/constants.dart';
 
 class PointsBox extends StatelessWidget {
   const PointsBox({Key? key}) : super(key: key);

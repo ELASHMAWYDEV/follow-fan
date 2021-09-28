@@ -8,3 +8,8 @@ const kRed = Color(0xFFeb2a14);
 const kGray = Color(0xFFeb2a14);
 const kSecondary = Color(0xFFff9f22);
 const kSecondaryLight = Color(0xFFeb2a14);
+const Color kRedColor = Color(0xFFe64d3c);
+const Color kGreenColor = Color(0xFF00c89d);
+
+const String kAppTitle = "Follow Fan";
+String kFontFamily = "Almarai";
