@@ -7,7 +7,7 @@ import 'package:follow_fan/utils/services/localization_service.dart';
 import 'package:follow_fan/utils/services/navigation_service.dart';
 import 'package:follow_fan/utils/services/storage_service.dart';
 import 'package:follow_fan/utils/translations/app_translations.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -30,6 +30,11 @@ class MyApp extends StatelessWidget {
       title: kAppTitle,
       translations: AppTranslations(),
       locale: Get.find<LocalizationService>().activeLocale,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
       supportedLocales: SupportedLocales.all,
       fallbackLocale: SupportedLocales.arabic,
       getPages: AppRoutes.routes,
@@ -39,7 +44,7 @@ class MyApp extends StatelessWidget {
           primaryColor: kPrimaryColor,
           textTheme: Theme.of(context).textTheme.apply(
                 bodyColor: kWhiteColor,
-                fontFamily: kFontFamily,
+                fontFamily: kFontFamilyPrimary,
               ),
           visualDensity: VisualDensity.adaptivePlatformDensity),
     );

@@ -6,12 +6,11 @@ class MiniBox extends StatelessWidget {
       : super(key: key);
 
   final String title;
-  final double number;
+  final int number;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20),
       padding: EdgeInsets.symmetric(vertical: 20),
       width: size.width * 0.43,
       decoration: BoxDecoration(
@@ -33,9 +32,9 @@ class MiniBox extends StatelessWidget {
           Text(
             "$number",
             style: TextStyle(
-              color: kWhiteColor,
-              fontSize: 18,
-            ),
+                color: kWhiteColor,
+                fontSize: 18,
+                fontFamily: kFontFamilySecondary),
           ),
         ],
       ),
