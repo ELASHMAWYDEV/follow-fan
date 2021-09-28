@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:follow_fan/utils/constants.dart';
 
 class MiniBox extends StatelessWidget {
-  const MiniBox({Key? key, required title, required number}) : super(key: key);
+  const MiniBox({Key? key, required this.title, required this.number})
+      : super(key: key);
 
-  final String title = "";
-  final double number = 0;
+  final String title;
+  final double number;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      margin: EdgeInsets.symmetric(vertical: 20),
+      padding: EdgeInsets.symmetric(vertical: 20),
+      width: size.width * 0.43,
+      decoration: BoxDecoration(
+          color: kPrimaryColor, borderRadius: BorderRadius.circular(4)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,11 +27,14 @@ class MiniBox extends StatelessWidget {
               fontSize: 18,
             ),
           ),
+          SizedBox(
+            height: 30,
+          ),
           Text(
             "$number",
             style: TextStyle(
               color: kWhiteColor,
-              fontSize: 14,
+              fontSize: 18,
             ),
           ),
         ],
