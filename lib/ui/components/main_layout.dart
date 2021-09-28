@@ -8,10 +8,16 @@ import 'bottom_navigation.dart';
 import 'header.dart';
 
 class MainLayout extends StatelessWidget {
-  const MainLayout({Key? key, required this.body}) : super(key: key);
+  const MainLayout(
+      {Key? key,
+      required this.body,
+      this.isBackEnabled = false,
+      this.title = ""})
+      : super(key: key);
 
   final Widget body;
-
+  final bool isBackEnabled;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +33,22 @@ class MainLayout extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 90,
+                    height: isBackEnabled ? 0 : 90,
                   ),
+                  isBackEnabled
+                      ? Padding(
+                          padding: EdgeInsets.symmetric(vertical: 35.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("$title",
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w700))
+                            ],
+                          ),
+                        )
+                      : SizedBox(),
                   body,
                   SizedBox(
                     height: 80,
@@ -37,7 +57,30 @@ class MainLayout extends StatelessWidget {
               ),
             ),
           ),
-          Header(),
+          isBackEnabled ? SizedBox() : Header(),
+          isBackEnabled
+              ? Positioned(
+                  top: 40,
+                  left: 10,
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)))),
+                      child: Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        color: kWhiteColor,
+                      ),
+                    ),
+                  ),
+                )
+              : Header(),
           BottomNavigation()
         ]),
       ),
