@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:follow_fan/ui/components/main_layout.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'package:follow_fan/utils/services/navigation_service.dart';
 import 'package:get/get.dart';
@@ -49,7 +50,7 @@ class MenuTap extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.find<NavigationService>().scaffoldKey.currentState!.openDrawer();
+        Scaffold.of(context).openDrawer();
       },
       borderRadius: BorderRadius.circular(50),
       highlightColor: kPrimaryColor,
