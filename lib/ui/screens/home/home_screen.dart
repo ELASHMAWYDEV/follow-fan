@@ -53,7 +53,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: size.width * 0.4,
                         child: SvgPicture.asset("assets/images/gift.svg",
                             fit: BoxFit.contain),
-                      )
+                      ),
+                      Container(
+                        width: size.width * 0.6,
+                        // margin: EdgeInsets.symmetric(horizontal: 50),
+                        child: TextButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(kOrangeColor),
+                          ),
+                          child: Text("اكسب المزيد من النقاط",
+                              style: TextStyle(color: kWhiteColor)),
+                        ),
+                      ),
                     ],
                   ),
                   TextButton(
