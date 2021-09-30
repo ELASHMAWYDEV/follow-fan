@@ -51,37 +51,37 @@ class MainLayout extends StatelessWidget {
                       : SizedBox(),
                   body,
                   SizedBox(
-                    height: 80,
+                    height: isBackEnabled ? 0 : 80,
                   )
                 ],
               ),
             ),
           ),
-          isBackEnabled ? SizedBox() : Header(),
-          isBackEnabled
-              ? Positioned(
-                  top: 40,
-                  left: 10,
-                  child: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: TextButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      style: ButtonStyle(
-                          shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)))),
-                      child: Icon(
-                        Icons.arrow_back_ios_new_rounded,
-                        color: kWhiteColor,
-                      ),
-                    ),
+          Visibility(visible: !isBackEnabled, child: Header()),
+          Visibility(
+            visible: isBackEnabled,
+            child: Positioned(
+              top: 40,
+              left: 10,
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)))),
+                  child: Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: kWhiteColor,
                   ),
-                )
-              : Header(),
-          BottomNavigation()
+                ),
+              ),
+            ),
+          ),
+          Visibility(visible: !isBackEnabled, child: BottomNavigation())
         ]),
       ),
     );
