@@ -53,7 +53,7 @@ class ContactUsScreen extends StatelessWidget {
           TextBox(
             label: "...ما الذي تريده",
             controller: controller.messageController,
-            large: true,
+            isLarge: true,
           ),
           SizedBox(
             height: 25,

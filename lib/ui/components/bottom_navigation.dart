@@ -36,7 +36,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 decoration:
                     BoxDecoration(color: kRedColor, shape: BoxShape.circle),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed("/new-link");
+                  },
                   style: ButtonStyle(
                       padding: MaterialStateProperty.all(EdgeInsets.all(0)),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
