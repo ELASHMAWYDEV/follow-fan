@@ -50,7 +50,9 @@ class AppDrawer extends StatelessWidget {
               Spacer(),
               MenuButton(
                   image: "assets/images/money.svg",
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed("/transactions");
+                  },
                   title: "المعاملات"),
               MenuButton(
                   image: "assets/images/question.svg",
