@@ -60,7 +60,9 @@ class AppDrawer extends StatelessWidget {
                   title: "تواصل معنا"),
               MenuButton(
                   image: "assets/images/information.svg",
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed("/about-us");
+                  },
                   title: "عن التطبيق"),
               Spacer(),
               GestureDetector(

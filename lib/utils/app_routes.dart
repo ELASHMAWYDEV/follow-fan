@@ -1,3 +1,4 @@
+import 'package:follow_fan/ui/screens/about_us/about_us.dart';
 import 'package:follow_fan/ui/screens/contact_us/contact_us_screen.dart';
 import 'package:follow_fan/ui/screens/home/home_screen.dart';
 import 'package:follow_fan/ui/screens/links/links_screen.dart';
@@ -12,6 +13,7 @@ class AppRoutes {
     GetPage(name: "/splash", page: () => SplashScreen()),
     GetPage(name: "/home", page: () => HomeScreen()),
     GetPage(name: "/contact-us", page: () => ContactUsScreen()),
+    GetPage(name: "/about-us", page: () => AboutUsScreen()),
     GetPage(name: "/links", page: () => LinksScreen()),
     GetPage(name: "/new-link", page: () => NewLinkScreen()),
   ];

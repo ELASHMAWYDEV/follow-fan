@@ -42,14 +42,23 @@ class ContactUsScreen extends StatelessWidget {
             height: 30,
           ),
           TextBox(label: "الاسم", controller: controller.nameController),
+          SizedBox(
+            height: 20,
+          ),
           TextBox(
             label: "الهاتف",
             controller: controller.numberController,
             keyboardType: TextInputType.number,
           ),
+          SizedBox(
+            height: 20,
+          ),
           TextBox(
               label: "بريدك الالكتروني",
               controller: controller.emailController),
+          SizedBox(
+            height: 20,
+          ),
           TextBox(
             label: "...ما الذي تريده",
             controller: controller.messageController,
