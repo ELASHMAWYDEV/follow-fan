@@ -42,7 +42,7 @@ class CategoryBox extends StatelessWidget {
             ),
             Positioned(
                 child: Visibility(
-              visible: !(isActive),
+              visible: !isActive,
               child: Container(
                 width: boxSize * 0.15,
                 height: boxSize * 0.15,

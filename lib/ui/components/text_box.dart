@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:follow_fan/utils/constants.dart';
 
 class TextBox extends StatelessWidget {
-  const TextBox({
-    Key? key,
-    required this.label,
-    required this.controller,
-    this.keyboardType,
-    this.isLarge = false,
-  }) : super(key: key);
+  const TextBox(
+      {Key? key,
+      required this.label,
+      required this.controller,
+      this.keyboardType,
+      this.isLarge = false,
+      this.isEditable = true,
+      this.fillColor = kWhiteColor,
+      this.hintColor = kGrayColor})
+      : super(key: key);
 
   final String label;
   final bool isLarge;
+  final bool isEditable;
+  final Color fillColor;
+  final Color hintColor;
   final TextInputType? keyboardType;
   final TextEditingController controller;
 
@@ -22,14 +28,15 @@ class TextBox extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       autofocus: false,
-      style: TextStyle(color: kPrimaryLightColor),
+      readOnly: !isEditable,
+      style: TextStyle(color: kPrimaryDarkColor),
       decoration: InputDecoration(
         hintText: label,
         hintStyle: TextStyle(
-          color: kGrayColor,
+          color: hintColor,
         ),
         isDense: true,
-        fillColor: kWhiteColor,
+        fillColor: fillColor,
         filled: true,
         contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         enabledBorder: OutlineInputBorder(

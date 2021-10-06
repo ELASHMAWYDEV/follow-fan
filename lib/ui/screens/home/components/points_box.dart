@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:follow_fan/ui/screens/home/components/choose_points_dialogue.dart';
 import 'package:follow_fan/utils/constants.dart';
+import 'package:get/get.dart';
 
 class PointsBox extends StatelessWidget {
   const PointsBox({Key? key}) : super(key: key);
@@ -65,7 +67,9 @@ class PointsBox extends StatelessWidget {
           Center(
             child: FittedBox(
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.dialog(ChoosePointsDialogue(), barrierDismissible: true);
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(kRedColor),
                 ),
