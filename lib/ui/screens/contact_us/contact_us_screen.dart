@@ -15,7 +15,6 @@ class ContactUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MainLayout(
-      isBackEnabled: true,
       title: "تواصل معنا",
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

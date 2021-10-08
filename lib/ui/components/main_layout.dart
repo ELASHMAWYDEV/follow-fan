@@ -8,16 +8,19 @@ import 'bottom_navigation.dart';
 import 'header.dart';
 
 class MainLayout extends StatelessWidget {
-  const MainLayout(
-      {Key? key,
-      required this.body,
-      this.isBackEnabled = false,
-      this.title = ""})
+  const MainLayout({Key? key, required this.body, this.title, this.onRefresh})
       : super(key: key);
 
   final Widget body;
-  final bool isBackEnabled;
-  final String title;
+  final String? title;
+  final Future<void> Function()? onRefresh;
+
+  Widget refreshWrapper(Widget body) {
+    if (onRefresh != null)
+      return RefreshIndicator(child: body, onRefresh: onRefresh!);
+    else
+      return body;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,61 +30,26 @@ class MainLayout extends StatelessWidget {
       body: ConstrainedBox(
         constraints: BoxConstraints(minHeight: size.height),
         child: Stack(children: [
-          SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: isBackEnabled ? 0 : 90,
-                  ),
-                  isBackEnabled
-                      ? Padding(
-                          padding: EdgeInsets.symmetric(vertical: 35.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("$title",
-                                  style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w700))
-                            ],
-                          ),
-                        )
-                      : SizedBox(),
-                  body,
-                  SizedBox(
-                    height: isBackEnabled ? 0 : 80,
-                  )
-                ],
-              ),
-            ),
-          ),
-          Visibility(visible: !isBackEnabled, child: Header()),
-          Visibility(
-            visible: isBackEnabled,
-            child: Positioned(
-              top: 40,
-              left: 10,
-              child: SizedBox(
-                width: 50,
-                height: 50,
-                child: TextButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)))),
-                  child: Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    color: kWhiteColor,
-                  ),
+          refreshWrapper(
+            SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 100,
+                    ),
+                    body,
+                    SizedBox(
+                      height: title != null ? 0 : 80,
+                    )
+                  ],
                 ),
               ),
             ),
           ),
-          Visibility(visible: !isBackEnabled, child: BottomNavigation())
+          Header(title: title),
+          Visibility(visible: title == null, child: BottomNavigation())
         ]),
       ),
     );

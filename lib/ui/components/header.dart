@@ -5,8 +5,8 @@ import 'package:follow_fan/utils/services/navigation_service.dart';
 import 'package:get/get.dart';
 
 class Header extends StatefulWidget {
-  const Header({Key? key}) : super(key: key);
-
+  const Header({Key? key, this.title}) : super(key: key);
+  final String? title;
   @override
   _HeaderState createState() => _HeaderState();
 }
@@ -27,14 +27,61 @@ class _HeaderState extends State<Header> {
               offset: Offset(0, 3),
               color: kPrimaryDarkColor.withOpacity(0.5))
         ]),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: Column(
           children: [
-            MenuTap(),
-            Image.asset(
-              "assets/images/logo.png",
-              width: 120,
+            Visibility(
+              visible: widget.title == null,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  MenuTap(),
+                  Image.asset(
+                    "assets/images/logo.png",
+                    width: 120,
+                  ),
+                ],
+              ),
+            ),
+            Visibility(
+              visible: widget.title != null,
+              child: Stack(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 12.0),
+                        child: Text("${widget.title}",
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w700)),
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: TextButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50)))),
+                        child: Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          color: kWhiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
