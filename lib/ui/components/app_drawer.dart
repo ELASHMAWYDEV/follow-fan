@@ -1,11 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget {
   const AppDrawer({Key? key}) : super(key: key);
+
+  @override
+  State<AppDrawer> createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+    clientId:
+        "153020618682-tosnr6v2oisn3t0rgh9bvq73od8mnaid.apps.googleusercontent.com",
+    scopes: ['email', "https://www.googleapis.com/auth/youtube.force-ssl"],
+  );
+
+  Future<void> signinWithGoogle() async {
+    try {
+      GoogleSignInAccount? result = await _googleSignIn.signIn();
+      print(result);
+    } catch (e) {
+      print(e);
+      AlertPromptBox.showError(error: "$e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +76,7 @@ class AppDrawer extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: signinWithGoogle,
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.all(0),
                     backgroundColor: kWhiteColor,

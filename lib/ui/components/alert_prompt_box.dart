@@ -10,7 +10,8 @@ class AlertPromptBox {
     Get.dialog(
         StatefulBuilder(
           builder: (BuildContext context, Function setState) => boxContainer(
-              title: error,
+              title: "حدث خطأ ما",
+              message: error,
               color: kRedColor,
               onDismiss: onDismiss,
               context: context),
@@ -22,7 +23,8 @@ class AlertPromptBox {
     Get.dialog(
         StatefulBuilder(
           builder: (BuildContext context, Function setState) => boxContainer(
-              title: message,
+              title: "تم بنجاح",
+              message: message,
               color: kGreenColor,
               context: context,
               onDismiss: onDismiss),
@@ -73,7 +75,9 @@ Widget boxContainer(
         {List<Widget>? actions,
         String? iconPath,
         String? title,
+        String? message,
         VoidCallback? onDismiss,
+        VoidCallback? onSuccess,
         var context,
         required Color color}) =>
     Dialog(
@@ -108,7 +112,10 @@ Widget boxContainer(
                       ),
                     ),
                     InkWell(
-                        onTap: onDismiss ?? () => {Get.back()},
+                        onTap: () {
+                          Get.back();
+                          onDismiss != null ? onDismiss() : () {}();
+                        },
                         borderRadius: BorderRadius.circular(4),
                         highlightColor: kWhiteColor,
                         child: Container(
@@ -134,7 +141,7 @@ Widget boxContainer(
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
-                    title ?? "هل أنت متأكد ؟",
+                    message ?? "هل أنت متأكد ؟",
                     textAlign: TextAlign.right,
                     style: TextStyle(
                       color: kPrimaryDarkColor,
@@ -148,37 +155,26 @@ Widget boxContainer(
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: color == kRedColor
+                        ? MainAxisAlignment.center
+                        : MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         height: 40,
                         width: 120,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.back();
+                            onDismiss != null ? onDismiss() : () {}();
+                          },
                           style: TextButton.styleFrom(
                               backgroundColor: kPrimaryLightColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4))),
-                          child: Text("تأكيد",
+                          child: Text(color == kRedColor ? "حسنا" : "تأكيد",
                               style: TextStyle(color: kWhiteColor)),
                         ),
                       ),
-                      Container(
-                        height: 40,
-                        width: 120,
-                        child: TextButton(
-                          onPressed: () {
-                            onDismiss == null ? () {}() : onDismiss();
-                            Get.back();
-                          },
-                          style: TextButton.styleFrom(
-                              backgroundColor: kRedColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4))),
-                          child: Text("الغاء",
-                              style: TextStyle(color: kWhiteColor)),
-                        ),
-                      )
                     ],
                   ),
                 ),
