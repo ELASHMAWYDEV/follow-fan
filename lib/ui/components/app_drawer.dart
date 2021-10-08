@@ -47,6 +47,42 @@ class AppDrawer extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.4,
                 ),
               ),
+              SizedBox(
+                height: 40,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: TextButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.all(0),
+                    backgroundColor: kWhiteColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 30),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/images/google.svg",
+                          height: 30,
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text("تسجيل الدخول",
+                            style:
+                                TextStyle(color: kPrimaryColor, fontSize: 14)),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               Spacer(),
               MenuButton(
                   image: "assets/images/money.svg",
@@ -67,6 +103,45 @@ class AppDrawer extends StatelessWidget {
                   },
                   title: "عن التطبيق"),
               Spacer(),
+              TextButton(
+                onPressed: () {
+                  print("hello");
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: kPrimaryLightColor,
+                  padding: EdgeInsets.all(0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6)),
+                ),
+                child: Stack(children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                    child: Column(
+                      children: [
+                        Text("الرقم التعريفي",
+                            style: TextStyle(fontSize: 12, color: kWhiteColor)),
+                        SizedBox(height: 10),
+                        Text("#324543",
+                            style: TextStyle(
+                                fontFamily: "SavedByZero",
+                                fontSize: 12,
+                                color: kWhiteColor)),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                      top: 5,
+                      right: 5,
+                      child: SvgPicture.asset(
+                        "assets/images/information.svg",
+                        color: kWhiteColor,
+                        width: 14,
+                      ))
+                ]),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               GestureDetector(
                 onTap: () async => await canLaunch("http://ar-chaos.com/")
                     ? await launch("http://ar-chaos.com/")

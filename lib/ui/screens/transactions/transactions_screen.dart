@@ -8,8 +8,10 @@ class TransactionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MainLayout(
-      isBackEnabled: true,
       title: "المعاملات",
+      onRefresh: () async {
+        print("refreshed");
+      },
       body: Column(
         children: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             .map((e) => TransactionBox())

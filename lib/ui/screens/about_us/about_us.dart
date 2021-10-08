@@ -9,7 +9,6 @@ class AboutUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MainLayout(
       title: "عن التطبيق",
-      isBackEnabled: true,
       body: Container(
         height: size.height * 0.7,
         width: size.width,

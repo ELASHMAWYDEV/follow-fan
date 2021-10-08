@@ -8,8 +8,11 @@ class LinksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MainLayout(
+        onRefresh: () async {
+          print("refreshed");
+        },
         body: Column(
-      children: [1, 2, 3, 4, 5, 6, 7, 8].map((e) => LinkBox()).toList(),
-    ));
+          children: [1, 2, 3, 4, 5, 6, 7, 8].map((e) => LinkBox()).toList(),
+        ));
   }
 }

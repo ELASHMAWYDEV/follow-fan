@@ -19,7 +19,6 @@ class NewLinkScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<NewLinkController>(builder: (_) {
       return MainLayout(
-        isBackEnabled: true,
         title: "اضف رابط جديد",
         body: SizedBox(
           height: size.height - 140,
@@ -151,6 +150,37 @@ class NewLinkScreen extends StatelessWidget {
                       ),
                     ],
                   )),
+              Divider(
+                color: kPrimaryColor,
+                thickness: 2,
+                indent: 40,
+                endIndent: 40,
+                height: 40,
+              ),
+              Text(
+                "اقصي عدد تفاعل يمكنك الحصول عليه حاليا هو",
+                style: TextStyle(fontSize: 10),
+              ),
+              SizedBox(
+                height: 7,
+              ),
+              Text(
+                "45 تفاعل",
+                style: TextStyle(
+                    fontSize: 14,
+                    color: kPrimaryLightColor,
+                    fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                height: 7,
+              ),
+              Text(
+                "هذا العدد قابل للزيادة في الايام المقبلة",
+                style: TextStyle(fontSize: 10),
+              ),
+              SizedBox(
+                height: 15,
+              ),
               Spacer(),
               Visibility(child: MainButton(title: "اضافة", onPressed: () {}))
             ],
