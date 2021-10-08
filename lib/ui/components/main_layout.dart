@@ -30,20 +30,20 @@ class MainLayout extends StatelessWidget {
       body: ConstrainedBox(
         constraints: BoxConstraints(minHeight: size.height),
         child: Stack(children: [
-          refreshWrapper(
-            SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 100,
-                    ),
-                    body,
-                    SizedBox(
-                      height: title != null ? 0 : 80,
-                    )
-                  ],
+          Padding(
+            padding: EdgeInsets.only(top: 95),
+            child: refreshWrapper(
+              SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+                  child: Column(
+                    children: [
+                      body,
+                      SizedBox(
+                        height: title != null ? 0 : 80,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
