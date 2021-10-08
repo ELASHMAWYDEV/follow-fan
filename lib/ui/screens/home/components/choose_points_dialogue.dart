@@ -128,6 +128,8 @@ class _ChoosePointsDialogueState extends State<ChoosePointsDialogue> {
                             ? null
                             : () {
                                 if (choosedBox == "earn") {
+                                  Get.back();
+                                  Get.toNamed("/earn-points");
                                 } else {
                                   Get.back();
                                   Get.bottomSheet(BuyPointsSheet());

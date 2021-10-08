@@ -3,8 +3,8 @@ import 'package:follow_fan/ui/components/main_layout.dart';
 import 'package:follow_fan/ui/controllers/earn_points_controller.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'package:get/get.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class EarnPointsScreen extends StatelessWidget {
   EarnPointsScreen({Key? key}) : super(key: key);
@@ -49,18 +49,12 @@ class EarnPointsScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: kPrimaryColor,
                       borderRadius: BorderRadius.circular(20)),
-                  child: YoutubePlayer(
+                  child: YoutubePlayerControllerProvider(
+                    // Provides controller to all the widget below it.
                     controller: _.youtubeController,
-                    showVideoProgressIndicator: true,
-                    progressIndicatorColor: kPrimaryLightColor,
-                    controlsTimeOut: Duration(seconds: 0),
-                    onReady: () {
-                      _.isPlayerReady = true;
-                      _.update();
-                    },
-                    onEnded: (data) {
-                      print("testing onEnd $data");
-                    },
+                    child: YoutubePlayerIFrame(
+                      aspectRatio: 16 / 9,
+                    ),
                   ),
                 ),
               ),
