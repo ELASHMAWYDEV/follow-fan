@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:get/get.dart';
 
 class ConnectionService extends GetxService {
@@ -21,7 +22,7 @@ class ConnectionService extends GetxService {
     return service;
   }
 
-  void _onConnectionChange(ConnectivityResult resul) {
+  void _onConnectionChange(ConnectivityResult result) {
     //Check if connected
     _checkConnection();
   }
@@ -44,6 +45,10 @@ class ConnectionService extends GetxService {
 
     if (oldConnectionStatus != newConnectionStatus) {
       hasConnection(newConnectionStatus);
+    }
+
+    if (!newConnectionStatus) {
+      AlertPromptBox.showError(error: "لا يوجد اتصال بالانترنت");
     }
   }
 

@@ -2,21 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:follow_fan/ui/components/main_layout.dart';
 import 'package:follow_fan/ui/screens/home/components/mini_box.dart';
 import 'package:follow_fan/ui/screens/home/components/points_box.dart';
+import 'package:follow_fan/ui/screens/home/components/steps_dialogue.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 20,
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.dialog(StepsDialogue());
+            },
             style: ButtonStyle(
                 padding: MaterialStateProperty.all(EdgeInsets.zero),
                 backgroundColor: MaterialStateProperty.all(kOrangeColor),
