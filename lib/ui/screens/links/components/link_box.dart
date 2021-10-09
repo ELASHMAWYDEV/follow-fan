@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'dart:math' as math;
 
@@ -252,7 +253,13 @@ class _LinkBoxState extends State<LinkBox> {
                                       SizedBox(
                                         height: 25,
                                         child: TextButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            AlertPromptBox.showPrompt(
+                                                message:
+                                                    "هل تريد الغاء الرابط ؟",
+                                                title: "الغاء الرابط",
+                                                onSuccess: () {});
+                                          },
                                           style: ButtonStyle(
                                             padding: MaterialStateProperty.all(
                                                 EdgeInsets.zero),

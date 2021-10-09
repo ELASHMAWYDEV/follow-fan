@@ -4,6 +4,7 @@ import 'package:follow_fan/utils/app_routes.dart';
 import 'package:follow_fan/utils/services/api_service.dart';
 import 'package:follow_fan/utils/services/connection_service.dart';
 import 'package:follow_fan/utils/services/firebase.dart';
+import 'package:follow_fan/utils/services/google_auth_service.dart';
 import 'package:follow_fan/utils/services/localization_service.dart';
 import 'package:follow_fan/utils/services/navigation_service.dart';
 import 'package:follow_fan/utils/services/storage_service.dart';
@@ -19,6 +20,7 @@ void main() async {
   await Get.putAsync(() => StorageService.init(), permanent: true);
   Get.put(LocalizationService.init(), permanent: true);
   Get.put(ApiService(), permanent: true);
+  Get.put(GoogleAuthService.init(), permanent: true);
   runApp(MyApp());
 }
 

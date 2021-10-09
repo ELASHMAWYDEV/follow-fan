@@ -31,7 +31,7 @@ class MainLayout extends StatelessWidget {
         constraints: BoxConstraints(minHeight: size.height),
         child: Stack(children: [
           Padding(
-            padding: EdgeInsets.only(top: 95),
+            padding: EdgeInsets.only(top: 100),
             child: refreshWrapper(
               SingleChildScrollView(
                 child: Container(

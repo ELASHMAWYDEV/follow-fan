@@ -29,7 +29,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             ),
             Positioned(
               top: 0,
-              left: size.width / 2 - 24,
+              left: size.width / 2 - 25,
               child: Container(
                 width: 50,
                 height: 50,

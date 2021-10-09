@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:follow_fan/utils/constants.dart';
+import 'package:follow_fan/utils/services/google_auth_service.dart';
+import 'package:follow_fan/utils/services/storage_service.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -14,21 +16,8 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
-  GoogleSignIn _googleSignIn = GoogleSignIn(
-    clientId:
-        "153020618682-tosnr6v2oisn3t0rgh9bvq73od8mnaid.apps.googleusercontent.com",
-    scopes: ['email', "https://www.googleapis.com/auth/youtube.force-ssl"],
-  );
-
-  Future<void> signinWithGoogle() async {
-    try {
-      GoogleSignInAccount? result = await _googleSignIn.signIn();
-      print(result);
-    } catch (e) {
-      print(e);
-      AlertPromptBox.showError(error: "$e");
-    }
-  }
+  final GoogleAuthService googleAuthService = Get.find<GoogleAuthService>();
+  final StorageService storageService = Get.find<StorageService>();
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +65,18 @@ class _AppDrawerState extends State<AppDrawer> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextButton(
-                  onPressed: signinWithGoogle,
+                  onPressed: () {
+                    if (googleAuthService.userData == null) {
+                      googleAuthService.signinWithGoogle();
+                    } else {
+                      AlertPromptBox.showPrompt(
+                          title: "تسجيل الخروج",
+                          message: "هل تريد تسجيل الخروج ؟",
+                          onSuccess: () {
+                            googleAuthService.logoutFromGoogle();
+                          });
+                    }
+                  },
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.all(0),
                     backgroundColor: kWhiteColor,
@@ -84,23 +84,50 @@ class _AppDrawerState extends State<AppDrawer> {
                         borderRadius: BorderRadius.circular(50)),
                   ),
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 8, horizontal: 30),
+                    padding: EdgeInsets.symmetric(
+                        vertical: storageService.googleAccount != null ? 3 : 8,
+                        horizontal:
+                            storageService.googleAccount != null ? 15 : 30),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(
-                          "assets/images/google.svg",
-                          height: 30,
+                        Visibility(
+                          visible: storageService.googleAccount == null,
+                          child: SvgPicture.asset(
+                            "assets/images/google.svg",
+                            height:
+                                storageService.googleAccount != null ? 20 : 30,
+                          ),
+                        ),
+                        Visibility(
+                          visible:
+                              storageService.googleAccount?.photoUrl != null,
+                          child: ClipOval(
+                            child: Image.network(
+                              storageService.googleAccount?.photoUrl ?? "",
+                              height: 25,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           width: 15,
                         ),
-                        Text("تسجيل الدخول",
-                            style:
-                                TextStyle(color: kPrimaryColor, fontSize: 14)),
+                        Visibility(
+                          visible: storageService.googleAccount == null,
+                          child: Text("تسجيل الدخول",
+                              style: TextStyle(
+                                  color: kPrimaryColor, fontSize: 14)),
+                        ),
+                        Visibility(
+                          visible: storageService.googleAccount != null,
+                          child: Text(storageService.googleAccount?.email ?? "",
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  color: kPrimaryColor, fontSize: 10)),
+                        ),
                       ],
                     ),
                   ),
@@ -126,41 +153,49 @@ class _AppDrawerState extends State<AppDrawer> {
                   },
                   title: "عن التطبيق"),
               Spacer(),
-              TextButton(
-                onPressed: () {
-                  print("hello");
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: kPrimaryLightColor,
-                  padding: EdgeInsets.all(0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6)),
-                ),
-                child: Stack(children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-                    child: Column(
-                      children: [
-                        Text("الرقم التعريفي",
-                            style: TextStyle(fontSize: 12, color: kWhiteColor)),
-                        SizedBox(height: 10),
-                        Text("#324543",
-                            style: TextStyle(
-                                fontFamily: "SavedByZero",
-                                fontSize: 12,
-                                color: kWhiteColor)),
-                      ],
-                    ),
+              Visibility(
+                visible: storageService.googleAccount != null,
+                child: TextButton(
+                  onPressed: () {
+                    AlertPromptBox.showSuccess(
+                        title: "#324543",
+                        message:
+                            "هذا هو الرقم التعريفي الخاص بك كمستخدم لتطبيق FollowFan");
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: kPrimaryLightColor,
+                    padding: EdgeInsets.all(0),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6)),
                   ),
-                  Positioned(
-                      top: 5,
-                      right: 5,
-                      child: SvgPicture.asset(
-                        "assets/images/information.svg",
-                        color: kWhiteColor,
-                        width: 14,
-                      ))
-                ]),
+                  child: Stack(children: [
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                      child: Column(
+                        children: [
+                          Text("الرقم التعريفي",
+                              style:
+                                  TextStyle(fontSize: 12, color: kWhiteColor)),
+                          SizedBox(height: 10),
+                          Text("#324543",
+                              style: TextStyle(
+                                  fontFamily: "SavedByZero",
+                                  fontSize: 12,
+                                  color: kWhiteColor)),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                        top: 5,
+                        right: 5,
+                        child: SvgPicture.asset(
+                          "assets/images/information.svg",
+                          color: kWhiteColor,
+                          width: 14,
+                        ))
+                  ]),
+                ),
               ),
               SizedBox(
                 height: 20,

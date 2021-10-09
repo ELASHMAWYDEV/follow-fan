@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:follow_fan/data/models/google_account_model.dart';
+import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:follow_fan/ui/components/main_layout.dart';
 import 'package:follow_fan/ui/screens/home/components/mini_box.dart';
 import 'package:follow_fan/ui/screens/home/components/points_box.dart';
 import 'package:follow_fan/ui/screens/home/components/steps_dialogue.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:follow_fan/utils/services/storage_service.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -43,6 +46,7 @@ class HomeScreen extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
+        
               Get.dialog(StepsDialogue());
             },
             style: ButtonStyle(

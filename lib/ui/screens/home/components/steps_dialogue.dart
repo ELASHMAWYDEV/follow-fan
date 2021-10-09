@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:follow_fan/data/models/google_account_model.dart';
+import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:follow_fan/utils/constants.dart';
+import 'package:follow_fan/utils/services/google_auth_service.dart';
+import 'package:follow_fan/utils/services/storage_service.dart';
 import 'package:get/get.dart';
 
 class StepsDialogue extends StatelessWidget {
@@ -85,6 +89,18 @@ class StepsDialogue extends StatelessWidget {
                       child: TextButton(
                         onPressed: () {
                           Get.back();
+                          //Check if the user is logged in with a google account
+                          final GoogleAccountModel? userAccount =
+                              Get.find<StorageService>().googleAccount;
+                          if (userAccount == null) {
+                            return AlertPromptBox.showPrompt(
+                              title: "تسجيل الدخول",
+                              message: "يجب تسجيل الدخول اولا",
+                              onSuccess: Get.find<GoogleAuthService>()
+                                  .signinWithGoogle,
+                              successBtnTitle: "تسجيل الدخول",
+                            );
+                          }
                           Get.toNamed("/earn-points");
                         },
                         style: TextButton.styleFrom(

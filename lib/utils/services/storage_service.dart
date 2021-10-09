@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:follow_fan/data/models/google_account_model.dart';
 import 'package:follow_fan/utils/services/localization_service.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // final test_token = ""
@@ -12,6 +14,7 @@ abstract class StorageKeys {
   static const String token = "TOKEN";
   static const String activeLocale = "ACTIVE_LOCAL";
   static const String client = "CLIENT";
+  static const String googleAccount = "GOOGLE_ACCOUNT";
 }
 
 class StorageService extends GetxService {
@@ -44,13 +47,20 @@ class StorageService extends GetxService {
     _prefs.setString(StorageKeys.activeLocale, activeLocal.toString());
   }
 
-  // //Client
-  // ClientModel get client {
-  //   return ClientModel.fromJson(
-  //       jsonDecode(_prefs.getString(StorageKeys.client) ?? "{}"));
-  // }
+  //Google account
+  GoogleAccountModel? get googleAccount {
+    return _prefs.getString(StorageKeys.googleAccount) == null
+        ? null
+        : GoogleAccountModel.fromJson(
+            jsonDecode(_prefs.getString(StorageKeys.googleAccount)!));
+  }
 
-  // set client(ClientModel? client) {
-  //   _prefs.setString(StorageKeys.client, jsonEncode(client));
-  // }
+  set googleAccount(GoogleAccountModel? googleAccount) {
+    if (googleAccount == null) {
+      _prefs.remove(StorageKeys.googleAccount);
+    } else {
+      _prefs.setString(
+          StorageKeys.googleAccount, jsonEncode(googleAccount.toJson()));
+    }
+  }
 }

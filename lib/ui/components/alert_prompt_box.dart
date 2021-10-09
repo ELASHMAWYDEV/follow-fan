@@ -19,11 +19,12 @@ class AlertPromptBox {
         barrierDismissible: true);
   }
 
-  static showSuccess({required String message, VoidCallback? onDismiss}) {
+  static showSuccess(
+      {String? title, required String message, VoidCallback? onDismiss}) {
     Get.dialog(
         StatefulBuilder(
           builder: (BuildContext context, Function setState) => boxContainer(
-              title: "تم بنجاح",
+              title: title ?? "تم بنجاح",
               message: message,
               color: kGreenColor,
               context: context,
@@ -32,40 +33,58 @@ class AlertPromptBox {
         barrierDismissible: true);
   }
 
-  static showPrompt(
-      {required String message,
-      required VoidCallback onSuccess,
-      VoidCallback? onDismiss,
-      String? iconPath}) {
+  static showPrompt({
+    required String message,
+    required String title,
+    required VoidCallback onSuccess,
+    VoidCallback? onDismiss,
+    String? iconPath,
+    String? successBtnTitle,
+    String? dismissBtnTitle,
+  }) {
     Get.dialog(
         StatefulBuilder(
           builder: (BuildContext context, Function setState) => boxContainer(
-            title: message,
-            color: kPrimaryColor,
-            iconPath: iconPath,
-            context: context,
-            // actions: [
-            //   RoundedButton(
-            //       title: "نعم",
-            //       onPressed: () {
-            //         Get.back();
-            //         onSuccess();
-            //       }),
-            //   SizedBox(
-            //     height: 10,
-            //   ),
-            //   RoundedButton(
-            //     title: "الغاء",
-            //     onPressed: onDismiss ??
-            //         () {
-            //           Get.back();
-            //         },
-            //     textColor: kPrimaryColor,
-            //     backgroundColor: kWhiteColor,
-            //     hasBorder: true,
-            //   )
-            // ]
-          ),
+              title: title,
+              message: message,
+              color: kPrimaryColor,
+              iconPath: iconPath,
+              onDismiss: onDismiss,
+              context: context,
+              actions: [
+                Container(
+                  height: 40,
+                  width: 120,
+                  child: TextButton(
+                    onPressed: () {
+                      Get.back();
+                      onSuccess();
+                    },
+                    style: TextButton.styleFrom(
+                        backgroundColor: kPrimaryLightColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4))),
+                    child: Text(successBtnTitle ?? "نعم",
+                        style: TextStyle(color: kWhiteColor)),
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  width: 120,
+                  child: TextButton(
+                    onPressed: () {
+                      Get.back();
+                      onDismiss != null ? onDismiss() : () {}();
+                    },
+                    style: TextButton.styleFrom(
+                        backgroundColor: kRedColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4))),
+                    child: Text(dismissBtnTitle ?? "الغاء",
+                        style: TextStyle(color: kWhiteColor)),
+                  ),
+                ),
+              ]),
         ),
         barrierDismissible: true);
   }
@@ -77,7 +96,6 @@ Widget boxContainer(
         String? title,
         String? message,
         VoidCallback? onDismiss,
-        VoidCallback? onSuccess,
         var context,
         required Color color}) =>
     Dialog(
@@ -144,38 +162,48 @@ Widget boxContainer(
                     message ?? "هل أنت متأكد ؟",
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      color: kPrimaryDarkColor,
-                      fontSize: 16,
-                    ),
+                        color: kPrimaryDarkColor, fontSize: 16, height: 1.5),
                   ),
                 ),
                 SizedBox(
                   height: 40,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Row(
-                    mainAxisAlignment: color == kRedColor
-                        ? MainAxisAlignment.center
-                        : MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 120,
-                        child: TextButton(
-                          onPressed: () {
-                            Get.back();
-                            onDismiss != null ? onDismiss() : () {}();
-                          },
-                          style: TextButton.styleFrom(
-                              backgroundColor: kPrimaryLightColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4))),
-                          child: Text(color == kRedColor ? "حسنا" : "تأكيد",
-                              style: TextStyle(color: kWhiteColor)),
+                Visibility(
+                  visible: actions == null,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          height: 40,
+                          width: 120,
+                          child: TextButton(
+                            onPressed: () {
+                              Get.back();
+                              onDismiss != null ? onDismiss() : () {}();
+                            },
+                            style: TextButton.styleFrom(
+                                backgroundColor: kPrimaryLightColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4))),
+                            child: Text("حسنا",
+                                style: TextStyle(color: kWhiteColor)),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                  ),
+                ),
+                Visibility(
+                  visible: actions != null,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                        mainAxisAlignment: color == kRedColor
+                            ? MainAxisAlignment.center
+                            : MainAxisAlignment.spaceBetween,
+                        children: actions ?? []),
                   ),
                 ),
               ],
