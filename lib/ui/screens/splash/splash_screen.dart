@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:follow_fan/ui/controllers/splash_controller.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key? key}) : super(key: key);
@@ -8,14 +10,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-
-    Future.delayed(Duration(milliseconds: 1800), () {
-      Navigator.of(context).pushReplacementNamed("/home");
-    });
-  }
+  SplashController controller = Get.put(SplashController());
 
   @override
   Widget build(BuildContext context) {

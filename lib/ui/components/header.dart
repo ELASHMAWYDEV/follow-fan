@@ -5,8 +5,10 @@ import 'package:follow_fan/utils/services/navigation_service.dart';
 import 'package:get/get.dart';
 
 class Header extends StatefulWidget {
-  const Header({Key? key, this.title}) : super(key: key);
+  const Header({Key? key, this.title, this.onBack}) : super(key: key);
   final String? title;
+  final Future<void> Function()? onBack;
+
   @override
   _HeaderState createState() => _HeaderState();
 }
@@ -67,6 +69,7 @@ class _HeaderState extends State<Header> {
                       height: 50,
                       child: TextButton(
                         onPressed: () {
+                          widget.onBack != null ? widget.onBack!() : () {}();
                           Get.back();
                         },
                         style: ButtonStyle(

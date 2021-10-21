@@ -15,4 +15,6 @@ const String kAppTitle = "Follow Fan";
 String kFontFamilyPrimary = "Almarai";
 String kFontFamilySecondary = "SavedByZero";
 
+const String kApiUrl = "http://192.168.1.192:5000/api/mobile/";
+
 final Size size = MediaQuery.of(Get.find<NavigationService>().context()).size;

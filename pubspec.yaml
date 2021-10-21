@@ -42,6 +42,7 @@ dependencies:
   youtube_player_flutter: ^8.0.0
   youtube_player_iframe: ^2.2.2
   google_sign_in: ^5.1.1
+  google_mobile_ads: ^0.13.5
 
 dev_dependencies:
   flutter_test:

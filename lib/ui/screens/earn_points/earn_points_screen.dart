@@ -3,7 +3,6 @@ import 'package:follow_fan/ui/components/main_layout.dart';
 import 'package:follow_fan/ui/controllers/earn_points_controller.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'package:get/get.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class EarnPointsScreen extends StatelessWidget {
@@ -97,7 +96,7 @@ class EarnPointsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "400 ",
+                        "${_.userData?.activePoints} ",
                         style: TextStyle(
                             fontFamily: kFontFamilySecondary, fontSize: 24),
                       ),

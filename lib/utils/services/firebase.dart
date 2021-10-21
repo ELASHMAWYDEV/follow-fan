@@ -20,7 +20,7 @@ Future<void> setupFirebase() async {
   //Get the token
   final String? token = await _firebaseMessaging.getToken();
 
-  print("token: $token");
+  print("firebase token: $token");
 
   //Handle background messages
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);

@@ -1,3 +1,4 @@
+import 'package:follow_fan/ui/screens/paypal_payment/paypal_payment_screen.dart';
 import 'package:follow_fan/ui/screens/about_us/about_us.dart';
 import 'package:follow_fan/ui/screens/contact_us/contact_us_screen.dart';
 import 'package:follow_fan/ui/screens/earn_points/earn_points_screen.dart';
@@ -20,5 +21,6 @@ class AppRoutes {
     GetPage(name: "/contact-us", page: () => ContactUsScreen()),
     GetPage(name: "/about-us", page: () => AboutUsScreen()),
     GetPage(name: "/earn-points", page: () => EarnPointsScreen()),
+    GetPage(name: "/paypal-payment", page: () => PaypalPaymentScreen()),
   ];
 }

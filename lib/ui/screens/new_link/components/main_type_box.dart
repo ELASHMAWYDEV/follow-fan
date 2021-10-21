@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:follow_fan/data/models/link_category_model.dart';
-import 'package:follow_fan/ui/controllers/new_link_controller.dart';
+import 'package:follow_fan/data/models/link_type_model.dart';
+import 'package:follow_fan/ui/controllers/links_controller.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'package:get/get.dart';
 
-class CategoryBox extends StatelessWidget {
-  CategoryBox({
+class MainTypeBox extends StatelessWidget {
+  MainTypeBox({
     Key? key,
-    required this.category,
-    required this.isActive,
+    required this.type,
+    required this.isSelected,
     required this.onPressed,
   }) : super(key: key);
-  final LinkCategoryModel category;
-  final bool isActive;
+  final LinkTypeModel type;
+  final bool isSelected;
   final VoidCallback onPressed;
 
   final double boxSize = size.width * 0.25 - 15;
 
-  final NewLinkController controller = Get.find<NewLinkController>();
+  final LinksController controller = Get.find<LinksController>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,23 +26,27 @@ class CategoryBox extends StatelessWidget {
       width: boxSize,
       height: boxSize,
       child: TextButton(
-        onPressed: onPressed,
+        onPressed: type.isActive ? onPressed : null,
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(
-                isActive ? kPrimaryLightColor : kPrimaryColor)),
+            backgroundColor: MaterialStateProperty.all(!type.isActive
+                ? kGrayColor
+                : isSelected
+                    ? kPrimaryLightColor
+                    : kPrimaryColor)),
         child: Stack(
           children: [
             Container(
               child: Center(
-                child: SvgPicture.asset(
-                  category.iconPath,
+                child: SvgPicture.string(
+                  type.svgCode ?? "",
+                  color: kWhiteColor,
                   width: 40,
                 ),
               ),
             ),
             Positioned(
                 child: Visibility(
-              visible: !isActive,
+              visible: !isSelected,
               child: Container(
                 width: boxSize * 0.15,
                 height: boxSize * 0.15,
@@ -52,7 +56,7 @@ class CategoryBox extends StatelessWidget {
             )),
             Positioned(
               child: Visibility(
-                visible: isActive,
+                visible: isSelected,
                 child: SvgPicture.asset(
                   "assets/images/check-mark.svg",
                   width: boxSize * 0.15,

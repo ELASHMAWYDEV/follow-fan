@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:follow_fan/data/models/google_account_model.dart';
+import 'package:follow_fan/data/models/user_model.dart';
 import 'package:follow_fan/utils/services/localization_service.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -15,6 +16,7 @@ abstract class StorageKeys {
   static const String activeLocale = "ACTIVE_LOCAL";
   static const String client = "CLIENT";
   static const String googleAccount = "GOOGLE_ACCOUNT";
+  static const String userData = "USER_DATA";
 }
 
 class StorageService extends GetxService {
@@ -27,9 +29,12 @@ class StorageService extends GetxService {
     return StorageService(prefs);
   }
 
+  void deleteKey(String key) {
+    _prefs.remove(key);
+  }
+
   //TOKEN
   String get token {
-    print(_prefs.getString(StorageKeys.token));
     return _prefs.getString(StorageKeys.token) ?? "";
   }
 
@@ -61,6 +66,22 @@ class StorageService extends GetxService {
     } else {
       _prefs.setString(
           StorageKeys.googleAccount, jsonEncode(googleAccount.toJson()));
+    }
+  }
+
+  //User Data
+  UserModel? get userData {
+    return _prefs.getString(StorageKeys.userData) == null
+        ? null
+        : UserModel.fromJson(
+            jsonDecode(_prefs.getString(StorageKeys.userData)!));
+  }
+
+  set userData(UserModel? userData) {
+    if (userData == null) {
+      _prefs.remove(StorageKeys.userData);
+    } else {
+      _prefs.setString(StorageKeys.userData, jsonEncode(userData.toJson()));
     }
   }
 }

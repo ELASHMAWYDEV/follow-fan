@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:follow_fan/data/models/transaction_model.dart';
+import 'package:follow_fan/ui/controllers/transactions_controller.dart';
 import 'package:follow_fan/utils/constants.dart';
+import 'package:get/get.dart';
 
 class TransactionBox extends StatelessWidget {
+  TransactionBox({Key? key, required this.transaction}) : super(key: key);
+
+  final TransactionModel transaction;
+
+  final TransactionsController controller = Get.find<TransactionsController>();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,35 +45,42 @@ class TransactionBox extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            "شحن نقاط",
+                            controller.getTransactionType(transaction.type),
                             style: TextStyle(fontSize: 12, color: kWhiteColor),
                           ),
                         ],
                       ),
                       Spacer(),
-                      Text(
-                        "56",
-                        style: TextStyle(
-                            fontFamily: kFontFamilySecondary,
-                            fontSize: 12,
-                            color: kWhiteColor),
-                      ),
-                      Transform.translate(
-                        offset: Offset(0, 2),
-                        child: Text(
-                          "\$",
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                            color: kGrayColor,
-                          ),
+                      Visibility(
+                        visible: transaction.money != null,
+                        child: Row(
+                          children: [
+                            Text(
+                              "${transaction.money?.value}",
+                              style: TextStyle(
+                                  fontFamily: kFontFamilySecondary,
+                                  fontSize: 12,
+                                  color: kWhiteColor),
+                            ),
+                            Transform.translate(
+                              offset: Offset(0, 2),
+                              child: Text(
+                                "\$",
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: kGrayColor,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(
                         width: 15,
                       ),
                       Text(
-                        "80",
+                        "${transaction.points}${transaction.points.isNegative ? "-" : "+"}",
                         style: TextStyle(
                             fontFamily: kFontFamilySecondary,
                             fontSize: 12,

@@ -8,12 +8,22 @@ import 'bottom_navigation.dart';
 import 'header.dart';
 
 class MainLayout extends StatelessWidget {
-  const MainLayout({Key? key, required this.body, this.title, this.onRefresh})
+  const MainLayout(
+      {Key? key,
+      required this.body,
+      this.title,
+      this.hasPadding = true,
+      this.onRefresh,
+      this.onBack,
+      this.scrollController})
       : super(key: key);
 
   final Widget body;
   final String? title;
+  final bool hasPadding;
   final Future<void> Function()? onRefresh;
+  final Future<void> Function()? onBack;
+  final ScrollController? scrollController;
 
   Widget refreshWrapper(Widget body) {
     if (onRefresh != null)
@@ -28,14 +38,19 @@ class MainLayout extends StatelessWidget {
       backgroundColor: kPrimaryDarkColor,
       drawer: AppDrawer(),
       body: ConstrainedBox(
-        constraints: BoxConstraints(minHeight: size.height),
+        constraints:
+            BoxConstraints(minHeight: size.height, minWidth: size.width),
         child: Stack(children: [
           Padding(
             padding: EdgeInsets.only(top: 100),
             child: refreshWrapper(
               SingleChildScrollView(
+                controller: scrollController,
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+                  constraints: BoxConstraints(minHeight: size.height * 0.9),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: hasPadding ? 15.0 : 0,
+                      vertical: hasPadding ? 15 : 0),
                   child: Column(
                     children: [
                       body,
@@ -48,7 +63,7 @@ class MainLayout extends StatelessWidget {
               ),
             ),
           ),
-          Header(title: title),
+          Header(title: title, onBack: onBack),
           Visibility(visible: title == null, child: BottomNavigation())
         ]),
       ),
