@@ -21,7 +21,7 @@ class ApiService extends GetxService {
 
   void init() {
     dio.options.baseUrl = kApiUrl;
-    dio.options.connectTimeout = 7000;
+    dio.options.connectTimeout = 14000;
     dio.options.receiveTimeout = 20000;
     dio.interceptors.add(PrettyDioLogger(
       requestHeader: true,

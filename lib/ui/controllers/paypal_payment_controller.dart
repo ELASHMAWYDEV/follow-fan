@@ -23,7 +23,7 @@ class PaypalPaymentController extends GetxController {
   String? checkoutUrl;
   String? executeUrl;
   String returnURL =
-      '${kApiUrl}approvePayment?transactionId=${Get.arguments["transactionId"]}&paypalAccessToken=${paypalService.paypalAccessToken}';
+      '${kApiUrl}approvePayment?l=${Get.arguments["transactionId"]}&paypalAccessToken=${paypalService.paypalAccessToken}';
   String cancelURL =
       '${kApiUrl}cancelPayment?transactionId=${Get.arguments["transactionId"]}';
 
