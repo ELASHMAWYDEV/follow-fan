@@ -15,6 +15,7 @@ class LinkModel {
   int watchTimeInSeconds;
   String svgCode;
   String typeTitle;
+  int pointsEarning;
 
   LinkModel({
     required this.linkId,
@@ -31,6 +32,7 @@ class LinkModel {
     required this.watchTimeInSeconds,
     required this.svgCode,
     required this.typeTitle,
+    required this.pointsEarning,
   });
 
   factory LinkModel.fromJson(Map<String, dynamic> parsedJson) {
@@ -49,6 +51,7 @@ class LinkModel {
       watchTimeInSeconds: parsedJson['watchTimeInSeconds'] ?? 0,
       svgCode: parsedJson['svgCode'] ?? "",
       typeTitle: parsedJson['typeTitle'] ?? "",
+      pointsEarning: parsedJson['pointsEarning'] ?? 0,
     );
   }
 
@@ -78,5 +81,6 @@ class LinkModel {
         'watchTimeInSeconds': watchTimeInSeconds,
         'svgCode': svgCode,
         'typeTitle': typeTitle,
+        'pointsEarning': pointsEarning,
       };
 }

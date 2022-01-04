@@ -74,7 +74,7 @@ class EarnPointsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "10+ ",
+                    "${_.links.length <= _.activeLinkIndex ? 0 : _.links[_.activeLinkIndex].pointsEarning}+ ",
                     style: TextStyle(
                         fontFamily: kFontFamilySecondary, fontSize: 16),
                   ),

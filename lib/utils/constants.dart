@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:follow_fan/utils/services/navigation_service.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,8 @@ const String kAppTitle = "Follow Fan";
 String kFontFamilyPrimary = "Almarai";
 String kFontFamilySecondary = "SavedByZero";
 
-const String kApiUrl = "http://192.168.1.192:5000/api/mobile/";
+const String kApiUrl = kReleaseMode
+    ? "https://followfan.herokuapp.com/api/mobile/"
+    : "https://8524-154-137-88-148.ngrok.io/api/mobile/";
 
 final Size size = MediaQuery.of(Get.find<NavigationService>().context()).size;

@@ -1,6 +1,5 @@
 import 'package:follow_fan/data/services/auth_service.dart';
 import 'package:follow_fan/data/services/points_service.dart';
-import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'package:follow_fan/utils/services/paypal_service.dart';
 import 'package:get/get.dart';
