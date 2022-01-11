@@ -69,8 +69,8 @@ class MoneyModel {
 
   factory MoneyModel.fromJson(Map<String, dynamic> parsedJson) {
     return MoneyModel(
-      value: parsedJson['value'] ?? "",
-      currency: parsedJson['currency'] ?? "",
+      value: parsedJson['value'].toString(),
+      currency: parsedJson['currency'].toString(),
     );
   }
 

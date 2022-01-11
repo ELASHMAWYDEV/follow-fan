@@ -176,7 +176,7 @@ class _NewLinkScreenState extends State<NewLinkScreen> {
                       ],
                     )),
                 Visibility(
-                  visible: _.expectedReactions != null,
+                  visible: false, //_.expectedReactions != null,
                   child: Column(
                     children: [
                       Divider(

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:follow_fan/data/models/google_account_model.dart';
-import 'package:follow_fan/data/models/user_model.dart';
-import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:follow_fan/ui/components/main_layout.dart';
 import 'package:follow_fan/ui/controllers/home_controller.dart';
 import 'package:follow_fan/ui/screens/home/components/mini_box.dart';

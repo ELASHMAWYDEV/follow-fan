@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:follow_fan/ui/components/main_layout.dart';
 import 'package:follow_fan/ui/controllers/earn_points_controller.dart';
 import 'package:follow_fan/utils/constants.dart';
+import 'package:follow_fan/utils/services/storage_service.dart';
 import 'package:get/get.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
@@ -96,7 +97,7 @@ class EarnPointsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "${_.userData?.activePoints} ",
+                        "${Get.find<StorageService>().userData?.activePoints} ",
                         style: TextStyle(
                             fontFamily: kFontFamilySecondary, fontSize: 24),
                       ),

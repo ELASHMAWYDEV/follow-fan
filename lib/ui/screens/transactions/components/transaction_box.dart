@@ -33,7 +33,7 @@ class TransactionBox extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "01",
+                        "0${controller.transactions.indexOf(transaction) + 1}",
                         style: TextStyle(
                             fontFamily: kFontFamilySecondary,
                             fontSize: 8,
@@ -107,8 +107,13 @@ class TransactionBox extends StatelessWidget {
             child: Container(
               width: 10,
               height: 10,
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: kGreenColor),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: transaction.status == "completed"
+                      ? kGreenColor
+                      : transaction.status == "pending"
+                          ? kOrangeColor
+                          : kRedColor),
             ),
           )
         ],

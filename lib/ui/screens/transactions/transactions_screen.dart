@@ -22,7 +22,7 @@ class TransactionScreen extends StatelessWidget {
               Visibility(
                 visible: _.transactions.length != 0,
                 child: Column(
-                  children: _.transactions
+                  children: _.transactions.reversed
                       .map((transaction) => TransactionBox(
                             transaction: transaction,
                           ))

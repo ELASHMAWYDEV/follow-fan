@@ -1,3 +1,4 @@
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:follow_fan/data/models/link_model.dart';
 import 'package:follow_fan/data/models/user_model.dart';
 import 'package:follow_fan/data/services/auth_service.dart';
@@ -10,7 +11,6 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class EarnPointsController extends GetxController {
   final AdmobService admobService = Get.find<AdmobService>();
-  final UserModel? userData = Get.find<StorageService>().userData;
   final PointsService pointsService = PointsService();
   final AuthService authService = AuthService();
 
@@ -39,7 +39,7 @@ class EarnPointsController extends GetxController {
       super.onInit();
       admobService.loadInterstitial();
     } catch (e) {
-      print("error i onInit(): $e");
+      print("error in onInit(): $e");
       AlertPromptBox.showError(error: "$e");
     }
   }
@@ -60,6 +60,7 @@ class EarnPointsController extends GetxController {
 
           lastPosition = youtubeController.value.position;
           if (remainingTime.inSeconds <= 0) {
+            final String finishedLinkId = links[activeLinkIndex].linkId;
             //For ads
             if (adStepTimes == 2) {
               admobService.interAd?.show();
@@ -67,12 +68,18 @@ class EarnPointsController extends GetxController {
               adStepTimes = 0;
             }
 
+            // Send the confirmation to API
+            EasyDebounce.debounce(
+                '$activeLinkIndex',
+                Duration(milliseconds: 500),
+                () async => await confrimLink(finishedLinkId));
+
             adStepTimes += 1;
             activeLinkIndex += 1;
 
             if (links.length <= activeLinkIndex) {
               youtubeController.close();
-              Get.offAllNamed("/home");
+              Get.offNamed("/home");
               AlertPromptBox.showPrompt(
                   title: "انتهت الفيديوهات",
                   message: "هل تريد اعادة تشغيلها مرة أخري",
@@ -82,8 +89,7 @@ class EarnPointsController extends GetxController {
             }
 
             youtubeController.stop();
-            // Send the confirmation to API
-            // await confrimLink();
+
             youtubeController.load(links[activeLinkIndex].videoId);
             youtubeController.play();
             remainingTime =
@@ -106,9 +112,8 @@ class EarnPointsController extends GetxController {
       final List<LinkModel> linksData = await pointsService.getEarningLinks();
       links = linksData;
       if (links.length == 0) {
-        Get.offAllNamed("/home");
+        Get.offNamed("/home");
         AlertPromptBox.showError(
-            
             error: "لا يوجد فيديوهات لمشاهدتها في الوقت الحالي");
         return;
       }
@@ -121,14 +126,13 @@ class EarnPointsController extends GetxController {
       lastPosition = Duration.zero;
       update();
     } catch (e) {
-      print("error i getLinks(): $e");
+      print("error in getLinks(): $e");
       AlertPromptBox.showError(error: "$e");
     }
   }
 
-  Future<void> confrimLink() async {
-    final int earnedPoints =
-        await pointsService.confirmEarningLink(links[activeLinkIndex].linkId);
+  Future<void> confrimLink(String linkId) async {
+    final int earnedPoints = await pointsService.confirmEarningLink(linkId);
     if (earnedPoints > 0) {
       // Update in storage
       await authService.register();
