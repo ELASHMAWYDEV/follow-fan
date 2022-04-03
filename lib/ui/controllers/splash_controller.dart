@@ -10,8 +10,8 @@ class SplashController extends GetxController {
 
     Future.delayed(Duration(milliseconds: 1800), () async {
       //Register the user
-      await register().then(
-          (_) => Get.toNamed("/home") //What ever happens, just navigate to home
+      await register().then((_) => Get.offAndToNamed(
+              "/home") //What ever happens, just navigate to home
           );
     });
   }

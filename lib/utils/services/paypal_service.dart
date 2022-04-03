@@ -21,11 +21,11 @@ class PaypalService extends GetxService {
 
   // change clientId and secret with your own, provided by paypal
   String clientId = kReleaseMode
-      ? 'AevGvPcXi_RVz7rrB9N1yewkymxuU5_-gKXl9WDgiLnItFwokkY1eooHugD4nCskrJP33CzGsiLBMeM6'
-      : 'AbiApIxvHWfjB1e02iz4Z5mLdBOhEQaq-fQKZOCFrUwTKsK3HfBQW7ipFs0mLrwkIPJ2Rv7pEeddFYnC';
+      ? 'AWRLO9xGOzgj8fWOiVwZl0JPESn6pG1Z8AJztD3tjpmZSyFGhDSoA3K1rTfGjaXp7FOwUXdOiPI5BpJm'
+      : 'Ac9rMA6fh1-40dkrWmDDXS0N-sTQz7EbVW5WScjMMkEcTREPvDIR1dX2H2fSUJJF9Y2tZM6AgZUlG-5h';
   String secret = kReleaseMode
-      ? 'EERIRK4K8wzSxbnlXX788bci0rJINoM89XnEkJgjQS3L2IuROelK86BsJiB8J0lNz-XI4rc4-lT5lJwP'
-      : 'EBLN640n-49JN3QBFHHI1TmuIEXO0EXErjeup4jwMpNlTusZi3sblN6_MB1lXQ-A6ITFd9yW735ylDtG';
+      ? 'EBlAYL3Q3PkchBWnvhnGKF6Yqz6Nq-Tisb4i74htGmnfHlAtq9Yd--wl0qjEs4M7L32b-dq4ifz9HQBp'
+      : 'EGX138K7TRHV9R78pzP1LZ0gyDcHrEpVmdj5fTQKwzlOzZAh_C8xdRaP3731N2yB0MiAuV94PigPaWOJ';
 
   String paypalAccessToken = "";
   Dio dio = new Dio();

@@ -4,8 +4,9 @@ import 'package:follow_fan/data/services.dart';
 import 'package:get/get.dart';
 
 class LinksService extends Services {
-  Future<List<LinkModel>> getMyLinks() async =>
-      await api.request(Services.myLinks, "GET").then((data) {
+  Future<List<LinkModel>> getMyLinks() async => await api
+          .request(Services.myLinks, "GET", showErrorMessage: false)
+          .then((data) {
         if (data == null) return [];
         final List<LinkModel> links = LinkModel.listFromJson(data["links"]);
         return links;

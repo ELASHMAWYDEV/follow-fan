@@ -5,8 +5,8 @@ import 'package:follow_fan/utils/constants.dart';
 import 'package:follow_fan/utils/services/google_auth_service.dart';
 import 'package:follow_fan/utils/services/storage_service.dart';
 import 'package:get/get.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -18,6 +18,19 @@ class AppDrawer extends StatefulWidget {
 class _AppDrawerState extends State<AppDrawer> {
   final GoogleAuthService googleAuthService = Get.find<GoogleAuthService>();
   final StorageService storageService = Get.find<StorageService>();
+  String? appVersion;
+
+  @override
+  void initState() {
+    getPackageInfo();
+    super.initState();
+  }
+
+  getPackageInfo() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    appVersion = packageInfo.version;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +237,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       height: 6,
                     ),
                     Text(
-                      "Copyright © 2021 Follow Fan",
+                      "Copyright © ${DateTime.parse(DateTime.now().toString()).year} Follow Fan",
                       style: TextStyle(
                           fontFamily: kFontFamilySecondary,
                           fontSize: 8,
@@ -234,7 +247,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       height: 4,
                     ),
                     Text(
-                      "V 0.1.0",
+                      "V $appVersion",
                       style: TextStyle(
                           fontFamily: kFontFamilySecondary,
                           fontSize: 6,

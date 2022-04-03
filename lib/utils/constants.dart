@@ -17,7 +17,7 @@ String kFontFamilyPrimary = "Almarai";
 String kFontFamilySecondary = "SavedByZero";
 
 const String kApiUrl = kReleaseMode
-    ? "https://followfan.herokuapp.com/api/mobile/"
-    : "https://07c0-41-187-94-22.ngrok.io/api/mobile/";
+    ? "https://flowfanarb.com/api/mobile/"
+    : "https://fe2a-45-98-196-85.ngrok.io/api/mobile/";
 
 final Size size = MediaQuery.of(Get.find<NavigationService>().context()).size;

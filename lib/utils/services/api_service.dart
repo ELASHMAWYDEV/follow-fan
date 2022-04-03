@@ -22,7 +22,7 @@ class ApiService extends GetxService {
   void init() {
     dio.options.baseUrl = kApiUrl;
     dio.options.connectTimeout = 14000;
-    dio.options.receiveTimeout = 20000;
+    dio.options.receiveTimeout = 40000;
     dio.interceptors.add(PrettyDioLogger(
       requestHeader: true,
       requestBody: true,
@@ -38,6 +38,7 @@ class ApiService extends GetxService {
       String contentType = "application/json",
       bool loaderEnabled = true,
       bool showSuccessMessage = false,
+      bool showErrorMessage = true,
       VoidCallback? onDismiss}) async {
     try {
       if (loaderEnabled) Loader.startLoading();
@@ -58,7 +59,7 @@ class ApiService extends GetxService {
 
       //Parse response
       final dataModel = ResponseModel.fromJson(response.data);
-      if (dataModel.status == false) {
+      if (dataModel.status == false && showErrorMessage) {
         AlertPromptBox.showError(
             error: dataModel.message, onDismiss: onDismiss);
         return false; //In case you are waiting for just the request failure
@@ -74,8 +75,9 @@ class ApiService extends GetxService {
       return dataModel.data;
     } catch (e) {
       if (loaderEnabled) Loader.stopLoading();
-      AlertPromptBox.showError(
-          error: "حدث خطأ ما ، يرجي المعاودة لاحقا", onDismiss: onDismiss);
+      if (showErrorMessage)
+        AlertPromptBox.showError(
+            error: "حدث خطأ ما ، يرجي المعاودة لاحقا", onDismiss: onDismiss);
       return null;
     }
   }

@@ -49,56 +49,56 @@ class EarnPointsController extends GetxController {
     try {
       await getLinks();
       youtubeController.listen((data) async {
-        if (data.isReady && !data.isBlank!) {
-          if (data.playerState == PlayerState.unStarted ||
-              data.playerState == PlayerState.unknown) youtubeController.play();
-          currentPosition = youtubeController.value.position;
-          if (currentPosition.inSeconds != lastPosition.inSeconds) {
-            remainingTime = Duration(seconds: remainingTime.inSeconds - 1);
-            update();
-          }
+        // if (data.isReady && !data.isBlank!) {
+        //   if (data.playerState == PlayerState.unStarted ||
+        //       data.playerState == PlayerState.unknown) youtubeController.play();
+        //   currentPosition = youtubeController.value.position;
+        //   if (currentPosition.inSeconds != lastPosition.inSeconds) {
+        //     remainingTime = Duration(seconds: remainingTime.inSeconds - 1);
+        //     update();
+        //   }
 
-          lastPosition = youtubeController.value.position;
-          if (remainingTime.inSeconds <= 0) {
-            final String finishedLinkId = links[activeLinkIndex].linkId;
-            //For ads
-            if (adStepTimes == 2) {
-              admobService.interAd?.show();
-              admobService.loadInterstitial();
-              adStepTimes = 0;
-            }
+        //   lastPosition = youtubeController.value.position;
+        //   if (remainingTime.inSeconds <= 0) {
+        //     final String finishedLinkId = links[activeLinkIndex].linkId;
+        //     //For ads
+        //     if (adStepTimes == 2) {
+        //       admobService.interAd?.show();
+        //       admobService.loadInterstitial();
+        //       adStepTimes = 0;
+        //     }
 
-            // Send the confirmation to API
-            EasyDebounce.debounce(
-                '$activeLinkIndex',
-                Duration(milliseconds: 500),
-                () async => await confrimLink(finishedLinkId));
+        //     // Send the confirmation to API
+        //     EasyDebounce.debounce(
+        //         '$activeLinkIndex',
+        //         Duration(milliseconds: 500),
+        //         () async => await confrimLink(finishedLinkId));
 
-            adStepTimes += 1;
-            activeLinkIndex += 1;
+        //     adStepTimes += 1;
+        //     activeLinkIndex += 1;
 
-            if (links.length <= activeLinkIndex) {
-              youtubeController.close();
-              Get.offNamed("/home");
-              AlertPromptBox.showPrompt(
-                  title: "انتهت الفيديوهات",
-                  message: "هل تريد اعادة تشغيلها مرة أخري",
-                  onSuccess: () async {
-                    Get.toNamed("/earn-points");
-                  });
-            }
+        //     if (links.length <= activeLinkIndex) {
+        //       youtubeController.close();
+        //       Get.offNamed("/home");
+        //       AlertPromptBox.showPrompt(
+        //           title: "انتهت الفيديوهات",
+        //           message: "هل تريد اعادة تشغيلها مرة أخري",
+        //           onSuccess: () async {
+        //             Get.toNamed("/earn-points");
+        //           });
+        //     }
 
-            youtubeController.stop();
+        //     youtubeController.stop();
 
-            youtubeController.load(links[activeLinkIndex].videoId);
-            youtubeController.play();
-            remainingTime =
-                Duration(seconds: links[activeLinkIndex].watchTimeInSeconds);
-            currentPosition = Duration.zero;
-            lastPosition = Duration.zero;
-            update();
-          }
-        }
+        //     youtubeController.load(links[activeLinkIndex].videoId);
+        //     youtubeController.play();
+        //     remainingTime =
+        //         Duration(seconds: links[activeLinkIndex].watchTimeInSeconds);
+        //     currentPosition = Duration.zero;
+        //     lastPosition = Duration.zero;
+        //     update();
+        //   }
+        // }
       });
     } catch (e) {
       print("error in onReady(): $e");
