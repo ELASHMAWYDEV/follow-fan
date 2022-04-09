@@ -4,24 +4,38 @@ import 'package:follow_fan/utils/constants.dart';
 class IntroHeader extends StatelessWidget {
   const IntroHeader({
     Key? key,
+    required this.onPressNext,
+    required this.onPressPrev,
+    required this.isPrevButtonVisible,
+    required this.isFinishButtonVisible,
   }) : super(key: key);
 
+  final VoidCallback onPressNext;
+  final VoidCallback onPressPrev;
+  final bool isPrevButtonVisible;
+  final bool isFinishButtonVisible;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        RoundedButton(
-          title: "التالي",
-          onPress: () {},
-        ),
-        RoundedButton(
-          title: "السابق",
-          backgroundColor: kPrimaryDarkColor,
-          onPress: () {},
-          icon: 
-        )
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          RoundedButton(
+            title: isFinishButtonVisible ? "هيا بنا" : "التالي",
+            onPress: onPressNext,
+          ),
+          Visibility(
+            visible: isPrevButtonVisible,
+            child: RoundedButton(
+              title: "السابق",
+              backgroundColor: kPrimaryColor,
+              isReversed: true,
+              onPress: onPressPrev,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -32,11 +46,13 @@ class RoundedButton extends StatelessWidget {
     required this.onPress,
     required this.title,
     this.backgroundColor = kPrimaryLightColor,
+    this.isReversed = false,
   }) : super(key: key);
 
   final VoidCallback onPress;
   final String title;
   final Color backgroundColor;
+  final bool isReversed;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -48,15 +64,23 @@ class RoundedButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20))),
             backgroundColor: MaterialStateProperty.all(backgroundColor)),
         child: Row(
+          textDirection: isReversed ? TextDirection.ltr : TextDirection.rtl,
           children: [
-            Icon(
-              Icons.arrow_back_ios,
-              color: kWhiteColor,
-              size: 16,
+            Padding(
+              padding: EdgeInsets.only(
+                  left: isReversed ? 0 : 3, right: isReversed ? 3 : 0),
+              child: Icon(
+                isReversed ? Icons.arrow_forward_ios : Icons.arrow_back_ios,
+                color: kWhiteColor,
+                size: 16,
+              ),
             ),
             Text(
               title,
-              style: TextStyle(color: kWhiteColor, fontSize: 16),
+              style: TextStyle(
+                color: kWhiteColor,
+                fontSize: 16,
+              ),
             ),
           ],
         ));
