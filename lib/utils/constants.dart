@@ -18,6 +18,6 @@ String kFontFamilySecondary = "SavedByZero";
 
 const String kApiUrl = kReleaseMode
     ? "https://flowfanarb.com/api/mobile/"
-    : "https://fe2a-45-98-196-85.ngrok.io/api/mobile/";
+    : "https://7b02-156-215-125-36.ngrok.io/api/mobile/";
 
 final Size size = MediaQuery.of(Get.find<NavigationService>().context()).size;

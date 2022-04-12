@@ -45,6 +45,8 @@ dependencies:
   google_mobile_ads: ^0.13.5
   easy_debounce: ^2.0.2+1
   package_info_plus: ^1.4.0
+  carousel_slider: ^4.0.0
+  audioplayers: ^0.20.1
 
 dev_dependencies:
   flutter_test:

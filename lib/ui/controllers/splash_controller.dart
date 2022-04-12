@@ -1,4 +1,6 @@
 import 'package:follow_fan/data/services/auth_service.dart';
+import 'package:follow_fan/ui/components/alert_prompt_box.dart';
+import 'package:follow_fan/utils/services/storage_service.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
@@ -10,11 +12,19 @@ class SplashController extends GetxController {
 
     Future.delayed(Duration(milliseconds: 1800), () async {
       //Register the user
-      await register().then((_) => Get.offAndToNamed(
-              "/home") //What ever happens, just navigate to home
-          );
+      final bool isRegistered = await register();
+
+      if (isRegistered) {
+        Get.find<StorageService>()
+            .triggerOnce(StorageKeys.hasSeenIntroScreens)
+            .then((value) => Get.offAndToNamed("/intro"))
+            .catchError((e) => Get.offAndToNamed("/home"));
+      } else {
+        // @TODO: handle if registration is broken, show no internet connection modal for ex.
+        AlertPromptBox.showError(error: "يرجي التحقق من اتصالك بالانترنت");
+      }
     });
   }
 
-  Future<void> register() async => await authService.register();
+  Future<bool> register() async => await authService.register();
 }
