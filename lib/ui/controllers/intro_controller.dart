@@ -6,6 +6,7 @@ const double imageHeight = 260;
 
 class IntroController extends GetxController {
   int activeIndex = 0;
+  bool isWelcomBonusAnimating = false;
   final CarouselController sliderController = CarouselController();
 
   final List<SlideModel> introSlides = [

@@ -29,18 +29,27 @@ class _IntroScreenState extends State<IntroScreen> {
               EdgeInsets.only(top: MediaQuery.of(context).padding.top + 10),
           child: Column(
             children: [
-              IntroHeader(
-                isPrevButtonVisible: _.activeIndex != 0,
-                isFinishButtonVisible:
-                    _.activeIndex == _.introSlides.length - 1,
-                onPressNext: _.next,
-                onPressPrev: _.prev,
+              Visibility(
+                visible: !_.isWelcomBonusAnimating,
+                child: IntroHeader(
+                  isPrevButtonVisible: _.activeIndex != 0,
+                  isFinishButtonVisible:
+                      _.activeIndex == _.introSlides.length - 1,
+                  onPressNext: _.next,
+                  onPressPrev: _.prev,
+                ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 30),
                 child: Visibility(
                   visible: _.activeIndex == _.introSlides.length - 1,
-                  child: BalanceBox(),
+                  child: BalanceBox(onStart: () {
+                    _.isWelcomBonusAnimating = true;
+                    _.update();
+                  }, onFinish: () {
+                    _.isWelcomBonusAnimating = false;
+                    _.update();
+                  }),
                 ),
               ),
               CarouselSlider(

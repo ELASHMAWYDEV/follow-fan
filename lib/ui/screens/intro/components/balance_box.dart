@@ -7,27 +7,34 @@ import 'package:follow_fan/utils/services/storage_service.dart';
 import 'package:get/get.dart';
 
 class BalanceBox extends StatefulWidget {
-  const BalanceBox({
-    Key? key,
-  }) : super(key: key);
+  const BalanceBox({Key? key, required this.onFinish, required this.onStart})
+      : super(key: key);
+
+  final VoidCallback onFinish;
+  final VoidCallback onStart;
 
   @override
   State<BalanceBox> createState() => _BalanceBoxState();
 }
 
 class _BalanceBoxState extends State<BalanceBox> {
+  final int points = Get.find<StorageService>().userData?.activePoints ?? 100;
   int animatedPoints = 0;
   AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   void initState() {
-    playSound();
-    print("Hello");
-    final int points = Get.find<StorageService>().userData?.activePoints ?? 100;
-    Timer.periodic(Duration(milliseconds: 50), (timer) {
+    Future.delayed(Duration.zero, () {
+      widget.onStart();
+      playSound();
+    });
+    Timer.periodic(Duration(milliseconds: 50), (timer) async {
       if (animatedPoints < points) {
         animatedPoints += 1;
         setState(() {});
+      } else {
+        widget.onFinish();
+        await audioPlayer.stop();
       }
     });
 
@@ -35,9 +42,14 @@ class _BalanceBoxState extends State<BalanceBox> {
   }
 
   void playSound() async {
+    // @TODO: download the audio file to be local
     int result = await audioPlayer.play(
-        "https://cdn.artlist.io/artlist-sfx-aac/464705_Sequenced_17_normal.aac");
-    print(result);
+        "https://cdn.artlist.io/artlist-sfx-aac/464705_Sequenced_17_normal.aac",
+        volume: 1);
+    await audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+    Timer.periodic(Duration(milliseconds: 300), (timer) async {
+      await audioPlayer.seek(Duration(milliseconds: 0));
+    });
   }
 
   @override

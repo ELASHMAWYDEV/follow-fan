@@ -17,6 +17,7 @@ abstract class StorageKeys {
   static const String client = "CLIENT";
   static const String googleAccount = "GOOGLE_ACCOUNT";
   static const String userData = "USER_DATA";
+  static const String hasSeenIntroScreens = "HAS_SEEN_INTRO_SCREENS";
 }
 
 class StorageService extends GetxService {
@@ -29,8 +30,20 @@ class StorageService extends GetxService {
     return StorageService(prefs);
   }
 
+  /// Delete stored data by key
   void deleteKey(String key) {
     _prefs.remove(key);
+  }
+
+  /// Trigger anything for 1 time, like Dialogues
+  Future<String> triggerOnce(String key) async {
+    final value = _prefs.getString(key);
+    if (value == null) {
+      _prefs.setString(key, "true");
+      return "true";
+    } else {
+      throw "key: $key, is triggered before";
+    }
   }
 
   //TOKEN

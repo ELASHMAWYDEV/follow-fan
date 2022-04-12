@@ -105,7 +105,7 @@ Widget boxContainer(
         child: FittedBox(
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 20),
-            width: MediaQuery.of(context).size.width * 0.8,
+            width: MediaQuery.of( context).size.width * 0.8,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),

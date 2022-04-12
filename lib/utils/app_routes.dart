@@ -11,7 +11,7 @@ import 'package:follow_fan/ui/screens/transactions/transactions_screen.dart';
 import 'package:get/get.dart';
 
 class AppRoutes {
-  static String initialRoute = "/intro";
+  static String initialRoute = "/splash";
 
   static List<GetPage> routes = [
     GetPage(name: "/splash", page: () => SplashScreen()),
