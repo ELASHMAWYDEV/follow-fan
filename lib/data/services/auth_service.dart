@@ -8,14 +8,11 @@ class AuthService extends Services {
           Services.registerUser, "POST", loaderEnabled: false, data: {
         "userId": Get.find<StorageService>().userData?.userId ?? ""
       }).then((data) {
-        //Delete the user & token from storage
-        Get.find<StorageService>().deleteKey(StorageKeys.token);
-        Get.find<StorageService>().deleteKey(StorageKeys.userData);
         if (data == null || data == false) {
           return false;
         }
-        final UserModel userData = UserModel.fromJson(data["user"]);
 
+        final UserModel userData = UserModel.fromJson(data["user"]);
         //Save access token & user data to storage
         Get.find<StorageService>().token = data["accessToken"];
         Get.find<StorageService>().userData = userData;

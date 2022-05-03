@@ -11,6 +11,7 @@ abstract class Services {
   static String chargePoints = "chargePoints"; //POST
   static String earnPoints = "earnPoints"; //GET
   static String confirmEarnPoints = "earnPoints"; //POST
+  static String help = "help"; //POST
 
   final ApiService _api = Get.find<ApiService>();
   ApiService get api => _api;

@@ -46,7 +46,12 @@ class _LinksScreenState extends State<LinksScreen> {
               ),
               Visibility(
                 visible: _.links.length == 0,
-                child: Center(child: Text("لا يوجد روابط حاليا")),
+                child: Center(
+                    child: Text(
+                  "لا يوجد روابط حاليا\nيمكنك اضافة الروابط الخاصة بك بالضغط علي علامة + بالأسفل",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(height: 1.5),
+                )),
               )
             ],
           ));

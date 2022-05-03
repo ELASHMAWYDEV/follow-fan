@@ -5,7 +5,7 @@ class TransactionModel {
   String userId;
   String type;
   String status;
-  double points;
+  int points;
   MoneyModel? money;
   String createData;
 
@@ -25,8 +25,7 @@ class TransactionModel {
       userId: parsedJson['userId'] ?? "",
       type: parsedJson['type'] ?? "",
       status: parsedJson['status'],
-      points:
-          parsedJson['points'] != null ? parsedJson['points'].toDouble() : null,
+      points: parsedJson['points'],
       money: parsedJson['money'] != null
           ? MoneyModel.fromJson(parsedJson["money"])
           : null,

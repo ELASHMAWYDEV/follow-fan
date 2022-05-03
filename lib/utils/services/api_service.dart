@@ -21,8 +21,8 @@ class ApiService extends GetxService {
 
   void init() {
     dio.options.baseUrl = kApiUrl;
-    dio.options.connectTimeout = 14000;
-    dio.options.receiveTimeout = 40000;
+    dio.options.connectTimeout = 30000;
+    dio.options.receiveTimeout = 60000;
     dio.interceptors.add(PrettyDioLogger(
       requestHeader: true,
       requestBody: true,
@@ -78,7 +78,7 @@ class ApiService extends GetxService {
       if (showErrorMessage)
         AlertPromptBox.showError(
             error: "حدث خطأ ما ، يرجي المعاودة لاحقا", onDismiss: onDismiss);
-      return null;
+      return false;
     }
   }
 }
