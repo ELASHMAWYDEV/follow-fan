@@ -1,5 +1,4 @@
 import 'package:follow_fan/data/models/link_model.dart';
-import 'package:follow_fan/data/models/transaction_model.dart';
 
 import '../services.dart';
 
@@ -19,8 +18,8 @@ class PointsService extends Services {
       });
 
   Future<int> confirmEarningLink(String linkId) async =>
-      await api.request(Services.confirmEarnPoints, "POST", loaderEnabled: false,
-          data: {"linkId": linkId}).then((data) {
+      await api.request(Services.confirmEarnPoints, "POST",
+          loaderEnabled: false, data: {"linkId": linkId}).then((data) {
         if (data == null) return 0;
         return data["points"];
       });

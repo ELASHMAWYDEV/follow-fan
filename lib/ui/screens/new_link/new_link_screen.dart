@@ -165,7 +165,7 @@ class _NewLinkScreenState extends State<NewLinkScreen> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text(
-                                      "مثال: https://www.instagram.com/p/CSAsmZOK8t6",
+                                      "مثال: https://www.youtube.com/watch?v=An3ubq0dbXs",
                                       style: TextStyle(
                                           color: kGrayColor, fontSize: 10)),
                                 ],

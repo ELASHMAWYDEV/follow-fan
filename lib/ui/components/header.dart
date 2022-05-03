@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:follow_fan/data/services/auth_service.dart';
 import 'package:follow_fan/ui/components/main_layout.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'package:follow_fan/utils/services/navigation_service.dart';
+import 'package:follow_fan/utils/services/storage_service.dart';
 import 'package:get/get.dart';
 
 class Header extends StatefulWidget {
@@ -38,9 +40,16 @@ class _HeaderState extends State<Header> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   MenuTap(),
-                  Image.asset(
-                    "assets/images/logo.png",
-                    width: 120,
+                  GestureDetector(
+                    onLongPress: () async {
+                      // @TODO: remove this in production
+                      Get.find<StorageService>().userData = null;
+                      await AuthService().register();
+                    },
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                      width: 120,
+                    ),
                   ),
                 ],
               ),

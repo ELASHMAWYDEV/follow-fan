@@ -55,7 +55,6 @@ class IntroController extends GetxController {
       sliderController.animateToPage(activeIndex,
           duration: Duration(milliseconds: 700), curve: Curves.easeOut);
     }
-    ;
     update();
   }
 }

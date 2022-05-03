@@ -46,7 +46,7 @@ class ContactUsScreen extends StatelessWidget {
           ),
           TextBox(
             label: "الهاتف",
-            controller: controller.numberController,
+            controller: controller.phoneNumberController,
             keyboardType: TextInputType.number,
           ),
           SizedBox(
@@ -66,7 +66,11 @@ class ContactUsScreen extends StatelessWidget {
           SizedBox(
             height: 25,
           ),
-          MainButton(title: "ارسال", onPressed: () {}),
+          MainButton(
+              title: "ارسال",
+              onPressed: () {
+                controller.sendMessage();
+              }),
         ],
       ),
     );

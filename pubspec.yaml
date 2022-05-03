@@ -47,6 +47,7 @@ dependencies:
   package_info_plus: ^1.4.0
   carousel_slider: ^4.0.0
   audioplayers: ^0.20.1
+  in_app_review: ^2.0.4
 
 dev_dependencies:
   flutter_test:
