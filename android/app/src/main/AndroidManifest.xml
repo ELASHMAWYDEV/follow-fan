@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.follow_fan">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.follow.fan.app">
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
   <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
@@ -44,6 +44,6 @@
     <!--Admob App ID-->
     <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2794737528786385~8157215715"/>
+            android:value="ca-app-pub-6349400119652128~9330951809"/>
   </application>
 </manifest>

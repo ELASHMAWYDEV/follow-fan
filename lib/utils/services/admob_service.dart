@@ -13,7 +13,7 @@ class AdmobService extends GetxService {
   void loadInterstitial() {
     InterstitialAd.load(
         adUnitId: kReleaseMode
-            ? 'ca-app-pub-2794737528786385/2713317344'
+            ? 'ca-app-pub-6349400119652128/8226603755'
             : InterstitialAd.testAdUnitId,
         request: AdRequest(),
         adLoadCallback: InterstitialAdLoadCallback(

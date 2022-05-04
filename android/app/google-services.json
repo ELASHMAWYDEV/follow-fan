@@ -1,38 +1,68 @@
 {
   "project_info": {
-    "project_number": "153020618682",
-    "project_id": "follow-fan",
-    "storage_bucket": "follow-fan.appspot.com"
+    "project_number": "741148431451",
+    "project_id": "followfanapp",
+    "storage_bucket": "followfanapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:153020618682:android:8cc95df47393e9822def83",
+        "mobilesdk_app_id": "1:741148431451:android:6c4f3cbd4f9ad1b89f5b7e",
         "android_client_info": {
-          "package_name": "com.followfan.app"
+          "package_name": "com.follow.fan.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "153020618682-tosnr6v2oisn3t0rgh9bvq73od8mnaid.apps.googleusercontent.com",
+          "client_id": "741148431451-bu4vhul1slsq36rguvje7ehjmbdrb89j.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCLniutAStR8UPUjZH_QEeej6aFiR-BMHk"
+          "current_key": "AIzaSyDuVwdP-Ox6Bbg4MA4UEhn89L8hf5z8v4A"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "153020618682-tosnr6v2oisn3t0rgh9bvq73od8mnaid.apps.googleusercontent.com",
+              "client_id": "741148431451-bu4vhul1slsq36rguvje7ehjmbdrb89j.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741148431451:android:62b8ef5c368762ef9f5b7e",
+        "android_client_info": {
+          "package_name": "com.followfan.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741148431451-bu4vhul1slsq36rguvje7ehjmbdrb89j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuVwdP-Ox6Bbg4MA4UEhn89L8hf5z8v4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741148431451-bu4vhul1slsq36rguvje7ehjmbdrb89j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-6349400119652128~9330951809"
     }
   ],
   "configuration_version": "1"

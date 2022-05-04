@@ -1,4 +1,4 @@
-package com.example.follow_fan
+package com.follow.fan.app
 
 import io.flutter.embedding.android.FlutterActivity
 

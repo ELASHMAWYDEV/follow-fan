@@ -41,8 +41,7 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.followfan.app"
+        applicationId "com.follow.fan.app"
         minSdkVersion 19
         targetSdkVersion 30
         multiDexEnabled true
