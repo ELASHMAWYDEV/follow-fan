@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         child: Center(
           child: Image.asset(
-            "assets/images/logo.png",
+            "assets/images/hamed-logo.jpg",
             width: MediaQuery.of(context).size.width * 0.6,
           ),
         ),

@@ -21,7 +21,7 @@ class AboutUsScreen extends StatelessWidget {
             ),
             Container(
               width: size.width * 0.6,
-              child: Image.asset("assets/images/logo.png"),
+              child: Image.asset("assets/images/hamed-logo.jpg"),
             ),
             SizedBox(
               height: 20,
@@ -39,7 +39,7 @@ class AboutUsScreen extends StatelessWidget {
               height: 40,
             ),
             Text(
-              "تطبيق فولو فان ، هو تطبيق يمكنك من الحصول علي تفاعلات لمنشورك أو الفيديو الخاص بك علي يوتيوب ،فيسبوك ، انستجرام وسناب شات.",
+              "تطبيق FollowArb24 ، هو تطبيق يمكنك من الحصول علي تفاعلات لمنشورك أو الفيديو الخاص بك علي يوتيوب ،فيسبوك ، انستجرام وسناب شات.",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: kWhiteColor,

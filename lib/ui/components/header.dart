@@ -39,8 +39,9 @@ class _HeaderState extends State<Header> {
                 children: [
                   MenuTap(),
                   Image.asset(
-                    "assets/images/logo.png",
+                    "assets/images/hamed-logo.jpg",
                     width: 120,
+                    height: 45,
                   ),
                 ],
               ),

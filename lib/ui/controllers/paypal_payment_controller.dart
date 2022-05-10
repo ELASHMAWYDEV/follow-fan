@@ -28,7 +28,7 @@ class PaypalPaymentController extends GetxController {
 
   Map<String, dynamic> getOrderParams() {
     // item name, price and quantity
-    String itemName = 'FollowFan Points';
+    String itemName = 'FollowArb24 Points';
     String itemPrice = price;
     int quantity = 1;
 
@@ -62,7 +62,7 @@ class PaypalPaymentController extends GetxController {
             "total": totalAmount,
             "currency": defaultCurrency["currency"],
           },
-          "description": "Buy FollowFan Points",
+          "description": "Buy FollowArb24 Points",
           "payment_options": {"allowed_payment_method": "IMMEDIATE_PAY"},
           "item_list": {
             "items": items,
@@ -70,7 +70,7 @@ class PaypalPaymentController extends GetxController {
         }
       ],
       "note_to_payer":
-          "Thank you for buying more points from FollowFan, we hope you use them wisely :)",
+          "Thank you for buying more points from FollowArb24, we hope you use them wisely :)",
       "redirect_urls": {"return_url": returnURL, "cancel_url": cancelURL}
     };
     return paymentDetails;

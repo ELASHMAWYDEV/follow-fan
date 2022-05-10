@@ -24,7 +24,7 @@ class ContactUsScreen extends StatelessWidget {
           ),
           Container(
             width: size.width * 0.6,
-            child: Image.asset("assets/images/logo.png"),
+            child: Image.asset("assets/images/hamed-logo.jpg"),
           ),
           SizedBox(
             height: 20,

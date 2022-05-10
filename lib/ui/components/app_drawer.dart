@@ -55,7 +55,7 @@ class _AppDrawerState extends State<AppDrawer> {
             children: [
               Center(
                 child: Image.asset(
-                  "assets/images/logo.png",
+                  "assets/images/hamed-logo.jpg",
                   width: MediaQuery.of(context).size.width * 0.4,
                 ),
               ),
@@ -160,7 +160,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     AlertPromptBox.showSuccess(
                         title: "#324543",
                         message:
-                            "هذا هو الرقم التعريفي الخاص بك كمستخدم لتطبيق FollowFan");
+                            "هذا هو الرقم التعريفي الخاص بك كمستخدم لتطبيق FollowArb24");
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: kPrimaryLightColor,
@@ -224,7 +224,7 @@ class _AppDrawerState extends State<AppDrawer> {
                       height: 6,
                     ),
                     Text(
-                      "Copyright © 2021 Follow Fan",
+                      "Copyright © 2021 Follow Arb24",
                       style: TextStyle(
                           fontFamily: kFontFamilySecondary,
                           fontSize: 8,

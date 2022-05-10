@@ -44,12 +44,18 @@ dependencies:
   google_sign_in: ^5.1.1
   google_mobile_ads: ^0.13.5
   easy_debounce: ^2.0.2+1
+  flutter_launcher_icons: ^0.9.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+
+flutter_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/hamed-logo.jpg"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
