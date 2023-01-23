@@ -8,6 +8,7 @@ import 'package:follow_fan/data/services/auth_service.dart';
 import 'package:follow_fan/data/services/links_service.dart';
 import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:follow_fan/utils/constants.dart';
+import 'package:follow_fan/utils/services/google_auth_service.dart';
 import 'package:follow_fan/utils/services/storage_service.dart';
 import 'package:get/get.dart';
 
@@ -119,6 +120,18 @@ class LinksController extends GetxController {
   }
 
   Future<void> addLink() async {
+    // Check if user is logged in
+    if (Get.find<GoogleAuthService>().userData == null) {
+      AlertPromptBox.showPrompt(
+          title: "تسجيل الدخول",
+          message: "يجب تسجيل الدخول لإضافة رابط جديد",
+          successBtnTitle: "تسجيل الدخول",
+          onSuccess: () async {
+            await Get.find<GoogleAuthService>().signinWithGoogle();
+          });
+      return;
+    }
+
     final LinkModel? linkAdded = await linksService.addLink(
         link: linkInputController.text,
         points: int.parse(pointsInputController.text),

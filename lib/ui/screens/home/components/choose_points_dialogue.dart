@@ -99,7 +99,7 @@ class _ChoosePointsDialogueState extends State<ChoosePointsDialogue> {
                     CheckboxButton(
                       title: "شراء نقاط",
                       isActive: choosedBox == "purchase",
-                      imagePath: "assets/images/purchase-vector.svg",
+                      svgImagePath: "assets/images/purchase-vector.svg",
                       onChange: () {
                         setState(() {
                           choosedBox = "purchase";
@@ -109,7 +109,7 @@ class _ChoosePointsDialogueState extends State<ChoosePointsDialogue> {
                     CheckboxButton(
                       title: "اكتساب نقاط",
                       isActive: choosedBox == "earn",
-                      imagePath: "assets/images/watch-earn-vector.svg",
+                      svgImagePath: "assets/images/watch-earn-vector.svg",
                       onChange: () {
                         setState(() {
                           choosedBox = "earn";

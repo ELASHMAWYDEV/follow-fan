@@ -16,8 +16,6 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
-  final GoogleAuthService googleAuthService = Get.find<GoogleAuthService>();
-  final StorageService storageService = Get.find<StorageService>();
   String? appVersion;
 
   @override
@@ -79,14 +77,14 @@ class _AppDrawerState extends State<AppDrawer> {
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextButton(
                   onPressed: () {
-                    if (googleAuthService.userData == null) {
-                      googleAuthService.signinWithGoogle();
+                    if (Get.find<StorageService>().googleAccount == null) {
+                      Get.find<GoogleAuthService>().signinWithGoogle();
                     } else {
                       AlertPromptBox.showPrompt(
                           title: "تسجيل الخروج",
                           message: "هل تريد تسجيل الخروج ؟",
                           onSuccess: () {
-                            googleAuthService.logoutFromGoogle();
+                            Get.find<GoogleAuthService>().logoutFromGoogle();
                           });
                     }
                   },
@@ -98,9 +96,14 @@ class _AppDrawerState extends State<AppDrawer> {
                   ),
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                        vertical: storageService.googleAccount != null ? 3 : 8,
+                        vertical:
+                            Get.find<StorageService>().googleAccount != null
+                                ? 3
+                                : 8,
                         horizontal:
-                            storageService.googleAccount != null ? 15 : 30),
+                            Get.find<StorageService>().googleAccount != null
+                                ? 15
+                                : 30),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                     ),
@@ -108,19 +111,16 @@ class _AppDrawerState extends State<AppDrawer> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Visibility(
-                          visible: storageService.googleAccount == null,
-                          child: SvgPicture.asset(
-                            "assets/images/google.svg",
-                            height:
-                                storageService.googleAccount != null ? 20 : 30,
-                          ),
-                        ),
-                        Visibility(
-                          visible:
-                              storageService.googleAccount?.photoUrl != null,
+                          visible: Get.find<StorageService>()
+                                  .googleAccount
+                                  ?.photoUrl !=
+                              null,
                           child: ClipOval(
                             child: Image.network(
-                              storageService.googleAccount?.photoUrl ?? "",
+                              Get.find<StorageService>()
+                                      .googleAccount
+                                      ?.photoUrl ??
+                                  "",
                               height: 25,
                             ),
                           ),
@@ -129,17 +129,31 @@ class _AppDrawerState extends State<AppDrawer> {
                           width: 15,
                         ),
                         Visibility(
-                          visible: storageService.googleAccount == null,
+                          visible:
+                              Get.find<StorageService>().googleAccount == null,
                           child: Text("تسجيل الدخول",
                               style: TextStyle(
                                   color: kPrimaryColor, fontSize: 14)),
                         ),
                         Visibility(
-                          visible: storageService.googleAccount != null,
-                          child: Text(storageService.googleAccount?.email ?? "",
+                          visible:
+                              Get.find<StorageService>().googleAccount != null,
+                          child: Text(
+                              Get.find<StorageService>().googleAccount?.email ??
+                                  "",
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                   color: kPrimaryColor, fontSize: 10)),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        SvgPicture.asset(
+                          "assets/images/google.svg",
+                          height:
+                              Get.find<StorageService>().googleAccount != null
+                                  ? 20
+                                  : 30,
                         ),
                       ],
                     ),
@@ -167,7 +181,7 @@ class _AppDrawerState extends State<AppDrawer> {
                   title: "عن التطبيق"),
               Spacer(),
               Visibility(
-                visible: storageService.googleAccount != null,
+                visible: Get.find<StorageService>().googleAccount != null,
                 child: TextButton(
                   onPressed: () {
                     AlertPromptBox.showSuccess(

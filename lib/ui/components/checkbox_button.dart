@@ -59,7 +59,7 @@ class CheckboxButton extends StatelessWidget {
                     ),
                   if (imageUrl != null)
                     Image.network(
-                      imagePath ?? "",
+                      imageUrl ?? "",
                       width: size.width * 0.25,
                       height: size.width * 0.3,
                     ),
