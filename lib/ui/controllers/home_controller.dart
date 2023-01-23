@@ -12,6 +12,8 @@ class HomeController extends GetxController {
   TextEditingController pointsInputController = TextEditingController();
   TextEditingController budgetInputController = TextEditingController();
 
+  String? paymentMethod = "paypal-payment-method";
+
   @override
   onInit() {
     pointsInputController.addListener(() {
@@ -28,6 +30,13 @@ class HomeController extends GetxController {
 
   void buyPoints() async {
     try {
+      if (paymentMethod == null)
+        return AlertPromptBox.showError(error: "يرجي اختيار وسيلة الدفع");
+
+      if (paymentMethod == "visa-payment-method")
+        return AlertPromptBox.showError(
+            error: "هذه الخاصية غير متوفرة حاليا", title: "عذرا");
+
       //Get the transaction id from API
       String? transactionId = await pointsService
           .chargePoints(int.parse(pointsInputController.text));

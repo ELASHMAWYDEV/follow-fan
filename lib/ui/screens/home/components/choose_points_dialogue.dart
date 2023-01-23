@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:follow_fan/data/models/google_account_model.dart';
 import 'package:follow_fan/ui/components/alert_prompt_box.dart';
-import 'package:follow_fan/ui/screens/home/components/buy_points_sheet.dart';
+import 'package:follow_fan/ui/components/checkbox_button.dart';
+import 'package:follow_fan/ui/screens/home/components/buy_points_payment_method_sheet.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'package:follow_fan/utils/services/google_auth_service.dart';
 import 'package:follow_fan/utils/services/storage_service.dart';
@@ -149,7 +149,7 @@ class _ChoosePointsDialogueState extends State<ChoosePointsDialogue> {
                                   Get.toNamed("/earn-points");
                                 } else {
                                   Get.back();
-                                  Get.bottomSheet(BuyPointsSheet());
+                                  Get.bottomSheet(BuyPointsPaymentSheetSheet());
                                 }
                               },
                         style: TextButton.styleFrom(
@@ -170,84 +170,5 @@ class _ChoosePointsDialogueState extends State<ChoosePointsDialogue> {
         ),
       ),
     );
-  }
-}
-
-class CheckboxButton extends StatelessWidget {
-  const CheckboxButton(
-      {Key? key,
-      required this.isActive,
-      required this.imagePath,
-      required this.title,
-      required this.onChange})
-      : super(key: key);
-  final bool isActive;
-  final String imagePath;
-  final String title;
-  final VoidCallback onChange;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: onChange,
-        style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(
-                isActive ? kPrimaryLightColor : kWhiteColor),
-            padding: MaterialStateProperty.all(EdgeInsets.all(0))),
-        child: Stack(
-          children: [
-            Container(
-              width: size.width * 0.3,
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 2,
-                    color: isActive ? kPrimaryDarkColor : kGrayColor,
-                  ),
-                  borderRadius: BorderRadius.circular(6)),
-              child: Column(
-                children: [
-                  SvgPicture.asset(
-                    imagePath,
-                    width: size.width * 0.25,
-                    height: size.width * 0.3,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    title,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: isActive ? kPrimaryDarkColor : kGrayColor),
-                  )
-                ],
-              ),
-            ),
-            Positioned(
-                top: 10,
-                right: 10,
-                child: Visibility(
-                  visible: !isActive,
-                  child: Container(
-                    width: 15,
-                    height: 15,
-                    decoration: BoxDecoration(
-                        color: kPrimaryDarkColor, shape: BoxShape.circle),
-                  ),
-                )),
-            Positioned(
-              top: 10,
-              right: 10,
-              child: Visibility(
-                visible: isActive,
-                child: SvgPicture.asset(
-                  "assets/images/check-mark.svg",
-                  width: 15,
-                ),
-              ),
-            )
-          ],
-        ));
   }
 }

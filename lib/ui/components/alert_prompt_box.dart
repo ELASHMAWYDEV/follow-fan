@@ -6,11 +6,12 @@ import 'package:get/get.dart';
 class AlertPromptBox {
   AlertPromptBox();
 
-  static showError({required String error, VoidCallback? onDismiss}) {
+  static showError(
+      {required String error, String? title, VoidCallback? onDismiss}) {
     Get.dialog(
         StatefulBuilder(
           builder: (BuildContext context, Function setState) => boxContainer(
-              title: "حدث خطأ ما",
+              title: title ?? "حدث خطأ ما",
               message: error,
               color: kRedColor,
               onDismiss: onDismiss,
@@ -105,7 +106,7 @@ Widget boxContainer(
         child: FittedBox(
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 20),
-            width: MediaQuery.of( context).size.width * 0.8,
+            width: MediaQuery.of(context).size.width * 0.8,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),

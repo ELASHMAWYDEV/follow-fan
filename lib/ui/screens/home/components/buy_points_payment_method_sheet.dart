@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:follow_fan/ui/components/alert_prompt_box.dart';
+import 'package:follow_fan/ui/components/checkbox_button.dart';
 import 'package:follow_fan/ui/components/main_button.dart';
-import 'package:follow_fan/ui/components/text_box.dart';
 import 'package:follow_fan/ui/controllers/home_controller.dart';
+import 'package:follow_fan/ui/screens/home/components/buy_points_sheet.dart';
 import 'package:follow_fan/utils/constants.dart';
 import 'package:get/get.dart';
 
-class BuyPointsSheet extends StatelessWidget {
-  BuyPointsSheet({Key? key}) : super(key: key);
+class BuyPointsPaymentSheetSheet extends StatelessWidget {
+  BuyPointsPaymentSheetSheet({Key? key}) : super(key: key);
 
   final HomeController controller = Get.find<HomeController>();
 
@@ -38,54 +38,46 @@ class BuyPointsSheet extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "شراء نقاط",
+                "اختر وسيلة الدفع المفضلة لديك",
                 style: TextStyle(
                     fontSize: 20,
                     color: kPrimaryDarkColor,
                     fontWeight: FontWeight.w600),
               ),
               SizedBox(
-                height: 15,
-              ),
-              Image.asset(
-                "assets/images/${_.paymentMethod}.png",
-                width: 80,
-                height: 80,
-              ),
-              SizedBox(
                 height: 25,
               ),
               Row(
                 children: [
-                  SizedBox(
-                    width: size.width / 2 - 35,
-                    child: TextBox(
-                        fillColor: kGrayColor.withOpacity(0.15),
-                        keyboardType: TextInputType.number,
-                        label: "عدد النقاط",
-                        controller: _.pointsInputController),
+                  CheckboxButton(
+                    isActive: _.paymentMethod == "visa-payment-method",
+                    imagePath: "assets/images/visa-payment-method.png",
+                    onChange: () {
+                      _.paymentMethod = "visa-payment-method";
+                      _.update();
+                    },
                   ),
                   SizedBox(
                     width: 20,
                   ),
-                  SizedBox(
-                      width: size.width / 2 - 35,
-                      child: TextBox(
-                          fillColor: kPrimaryColor.withOpacity(0.15),
-                          hintColor: kPrimaryDarkColor,
-                          label: "التكلفة",
-                          isEditable: false,
-                          controller: _.budgetInputController)),
+                  CheckboxButton(
+                    isActive: _.paymentMethod == "paypal-payment-method",
+                    imagePath: "assets/images/paypal-payment-method.png",
+                    onChange: () {
+                      _.paymentMethod = "paypal-payment-method";
+                      _.update();
+                    },
+                  )
                 ],
               ),
               SizedBox(
                 height: 30,
               ),
               MainButton(
-                  title: "شراء",
+                  title: "المتابعة",
                   onPressed: () {
                     Get.back();
-                    _.buyPoints();
+                    Get.bottomSheet(BuyPointsSheet());
                   })
             ],
           ),
