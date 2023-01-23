@@ -29,14 +29,17 @@ class _IntroScreenState extends State<IntroScreen> {
               EdgeInsets.only(top: MediaQuery.of(context).padding.top + 10),
           child: Column(
             children: [
-              Visibility(
-                visible: !_.isWelcomBonusAnimating,
-                child: IntroHeader(
-                  isPrevButtonVisible: _.activeIndex != 0,
-                  isFinishButtonVisible:
-                      _.activeIndex == _.introSlides.length - 1,
-                  onPressNext: _.next,
-                  onPressPrev: _.prev,
+              ConstrainedBox(
+                constraints: BoxConstraints(minHeight: 50),
+                child: Visibility(
+                  visible: !_.isWelcomBonusAnimating,
+                  child: IntroHeader(
+                    isPrevButtonVisible: _.activeIndex != 0,
+                    isFinishButtonVisible:
+                        _.activeIndex == _.introSlides.length - 1,
+                    onPressNext: _.next,
+                    onPressPrev: _.prev,
+                  ),
                 ),
               ),
               Container(

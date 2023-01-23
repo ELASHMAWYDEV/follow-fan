@@ -23,7 +23,7 @@ class _NewLinkScreenState extends State<NewLinkScreen> {
 
   @override
   initState() {
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       await controller.getLinkTypes();
     });
 

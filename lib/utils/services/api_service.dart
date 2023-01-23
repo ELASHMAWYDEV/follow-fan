@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:follow_fan/data/models/response_model.dart';
 import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:follow_fan/ui/components/loader.dart';

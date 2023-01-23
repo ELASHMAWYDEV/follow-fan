@@ -15,19 +15,19 @@ FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 
 Future<void> setupFirebase() async {
   await Firebase.initializeApp();
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  // FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   //Get the token
-  final String? token = await _firebaseMessaging.getToken();
+  // final String? token = await _firebaseMessaging.getToken();
 
-  print("firebase token: $token");
+  // print("firebase token: $token");
 
   //Handle background messages
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   //Get notification permission
-  NotificationSettings settings = await _firebaseMessaging.requestPermission();
-  print("authurization is : ${settings.authorizationStatus}");
+  // NotificationSettings settings = await _firebaseMessaging.requestPermission();
+  // print("authurization is : ${settings.authorizationStatus}");
 
   /*****************************************/
   //Handle messaging

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:follow_fan/data/models/google_account_model.dart';
 import 'package:follow_fan/ui/components/alert_prompt_box.dart';
 import 'package:follow_fan/utils/services/storage_service.dart';
@@ -16,7 +14,7 @@ class GoogleAuthService extends GetxService {
   static GoogleAuthService init() {
     final GoogleSignIn googleSignIn = GoogleSignIn(
       clientId:
-          "153020618682-tosnr6v2oisn3t0rgh9bvq73od8mnaid.apps.googleusercontent.com",
+          "741148431451-bu4vhul1slsq36rguvje7ehjmbdrb89j.apps.googleusercontent.com",
       scopes: [
         'email',
       ],
